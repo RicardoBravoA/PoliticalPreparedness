@@ -1,4 +1,4 @@
-package com.udacity.political.preparedness.representative
+package com.udacity.political.preparedness.representative.model
 
 import android.os.Parcelable
 import com.udacity.political.preparedness.network.models.Office

@@ -2,7 +2,7 @@ package com.udacity.political.preparedness.network.models
 
 import android.os.Parcelable
 import com.squareup.moshi.Json
-import com.udacity.political.preparedness.representative.Representative
+import com.udacity.political.preparedness.representative.model.Representative
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
