@@ -3,26 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    android:label="nav_graph"
+    app:startDestination="@id/LaunchFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.udacity.political.preparedness.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_launch">
+        android:id="@+id/LaunchFragment"
+        android:name="com.udacity.political.preparedness.launch.LaunchFragment"
+        android:label="fragment_launch"
+        tools:layout="@layout/fragment_launch" />
 
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+    <fragment
+        android:id="@+id/RepresentativeFragment"
+        android:name="com.udacity.political.preparedness.representative.RepresentativeFragment"
+        android:label="fragment_representative"
+        tools:layout="@layout/fragment_representative" />
+    <fragment
+        android:id="@+id/VoterInfoFragment"
+        android:name="com.udacity.political.preparedness.election.VoterInfoFragment"
+        android:label="fragment_voter_info">
+        <argument
+            android:name="arg_election_id"
+            app:argType="integer" />
+        <argument
+            android:name="arg_division"
+            app:argType="com.example.android.politicalpreparedness.network.models.Division" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.udacity.political.preparedness.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/ElectionsFragment"
+        android:name="com.udacity.political.preparedness.election.ElectionsFragment"
+        android:label="fragment_elections" />
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
 </navigation>
