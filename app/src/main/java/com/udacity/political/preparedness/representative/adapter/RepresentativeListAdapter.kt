@@ -12,6 +12,7 @@ import com.udacity.political.preparedness.R
 import com.udacity.political.preparedness.network.models.Channel
 import com.udacity.political.preparedness.representative.model.Representative
 
+/*
 class RepresentativeListAdapter :
     ListAdapter<Representative, RepresentativeViewHolder>(RepresentativeDiffCallback()) {
 
@@ -83,4 +84,4 @@ class RepresentativeViewHolder(val binding: ViewholderRepresentativeBinding) :
 
 //TODO: Create RepresentativeDiffCallback
 
-//TODO: Create RepresentativeListener
+//TODO: Create RepresentativeListener*/

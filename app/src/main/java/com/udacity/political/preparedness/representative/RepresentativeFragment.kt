@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.udacity.political.preparedness.network.models.Address
 import java.util.Locale
 
+/*
 class RepresentativeFragment : Fragment() {
 
     companion object {
@@ -81,4 +82,4 @@ class RepresentativeFragment : Fragment() {
         imm.hideSoftInputFromWindow(view!!.windowToken, 0)
     }
 
-}
+}*/
