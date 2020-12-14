@@ -2,6 +2,7 @@ package com.udacity.political.preparedness.network.adapter
 
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.ToJson
+import com.udacity.political.preparedness.network.models.Division
 
 class ElectionAdapter {
     @FromJson
