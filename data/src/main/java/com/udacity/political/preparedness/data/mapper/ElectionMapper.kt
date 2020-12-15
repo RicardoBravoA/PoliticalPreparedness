@@ -1,7 +1,9 @@
 package com.udacity.political.preparedness.data.mapper
 
 import com.udacity.political.preparedness.data.entity.ElectionResponse
+import com.udacity.political.preparedness.data.storage.entity.DivisionEntity
 import com.udacity.political.preparedness.data.storage.entity.ElectionEntity
+import com.udacity.political.preparedness.domain.model.DivisionModel
 import com.udacity.political.preparedness.domain.model.ElectionModel
 
 object ElectionMapper {
@@ -23,7 +25,13 @@ object ElectionMapper {
 
     private fun transformElectionEntityToModel(electionEntity: ElectionEntity): ElectionModel {
         electionEntity.apply {
-            return ElectionModel(name, electionDay, divisionEntity)
+            return ElectionModel(name, electionDay, transformDivisionEntityToModel(divisionEntity))
+        }
+    }
+
+    private fun transformDivisionEntityToModel(divisionEntity: DivisionEntity): DivisionModel {
+        divisionEntity.apply {
+            return DivisionModel(id, country, state)
         }
     }
 
