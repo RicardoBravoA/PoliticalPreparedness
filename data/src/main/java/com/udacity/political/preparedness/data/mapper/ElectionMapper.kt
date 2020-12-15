@@ -11,7 +11,7 @@ object ElectionMapper {
 
     fun transformElectionResponseToEntity(electionResponse: ElectionResponse): ElectionEntity {
         electionResponse.apply {
-            return ElectionEntity(id, name, electionDay, divisionEntity)
+            return ElectionEntity(id, name, electionDay, divisionResponse)
         }
     }
 
@@ -34,6 +34,15 @@ object ElectionMapper {
         divisionEntity.apply {
             return DivisionModel(id, country, state)
         }
+    }
+
+    fun transformResponseToModel(electionResponseList: List<ElectionResponse>): List<ElectionModel> {
+        val electionModelList = mutableListOf<ElectionModel>()
+
+        electionResponseList.forEach {
+            electionModelList.add(transformElectionResponseToModel(it))
+        }
+        return electionModelList
     }
 
     private fun transformElectionResponseToModel(electionResponse: ElectionResponse): ElectionModel {
