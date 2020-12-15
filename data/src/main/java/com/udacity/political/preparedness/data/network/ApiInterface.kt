@@ -11,6 +11,6 @@ interface ApiInterface {
     @GET("elections")
     suspend fun elections(
         @Query("key") key: String = BuildConfig.CIVIC_API_KEY
-    ): Response<List<ElectionResponse>>
+    ): Response<ElectionResponse>
 
 }

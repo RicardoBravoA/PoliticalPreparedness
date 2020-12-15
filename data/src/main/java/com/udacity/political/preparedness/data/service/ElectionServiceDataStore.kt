@@ -15,8 +15,8 @@ class ElectionServiceDataStore(private val electionDao: ElectionDao) : ElectionD
     override suspend fun get(): ResultType<List<ElectionModel>, ErrorModel> {
         val response = ApiManager.get().elections()
         return if (response.isSuccessful) {
-            val electionEntityList = response.body()
-            ResultType.Success(ElectionMapper.transformResponseToModel(electionEntityList))
+            val electionResponse = response.body()
+            ResultType.Success(ElectionMapper.transformResponseToModel(electionResponse))
         } else {
             val error = RetrofitErrorUtil.parseError(response)!!
             ResultType.Error(ErrorMapper.transformResponseToModel(error))

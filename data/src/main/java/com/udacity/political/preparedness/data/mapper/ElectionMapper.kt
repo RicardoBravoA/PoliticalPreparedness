@@ -1,5 +1,6 @@
 package com.udacity.political.preparedness.data.mapper
 
+import com.udacity.political.preparedness.data.entity.ElectionItemResponse
 import com.udacity.political.preparedness.data.entity.ElectionResponse
 import com.udacity.political.preparedness.data.storage.entity.ElectionEntity
 import com.udacity.political.preparedness.data.util.ElectionUtil
@@ -8,8 +9,8 @@ import com.udacity.political.preparedness.domain.model.ElectionModel
 
 object ElectionMapper {
 
-    fun transformElectionResponseToEntity(electionResponse: ElectionResponse): ElectionEntity {
-        electionResponse.apply {
+    fun transformElectionResponseToEntity(electionItemResponse: ElectionItemResponse): ElectionEntity {
+        electionItemResponse.apply {
             return ElectionEntity(
                 id,
                 name,
@@ -38,17 +39,17 @@ object ElectionMapper {
         return ElectionUtil.divisionFromJson(divisionId)
     }
 
-    fun transformResponseToModel(electionResponseList: List<ElectionResponse>?): List<ElectionModel> {
+    fun transformResponseToModel(electionResponse: ElectionResponse?): List<ElectionModel> {
         val electionModelList = mutableListOf<ElectionModel>()
 
-        electionResponseList?.forEach {
+        electionResponse?.elections?.forEach {
             electionModelList.add(transformElectionResponseToModel(it))
         }
         return electionModelList
     }
 
-    private fun transformElectionResponseToModel(electionResponse: ElectionResponse): ElectionModel {
-        electionResponse.apply {
+    private fun transformElectionResponseToModel(electionItemResponse: ElectionItemResponse): ElectionModel {
+        electionItemResponse.apply {
             return ElectionModel(
                 id,
                 name,
