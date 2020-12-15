@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -21,6 +22,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'CIVIC_API_KEY', '"AIzaSyDL_bKngrw0bt7kC76EYt7OMAB-Huw7esA"'
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'CIVIC_API_KEY', '"AIzaSyBEZFyjqkkSW4Rii6oL5rnCZ250yoiYg7s"'
         }
     }
     compileOptions {
