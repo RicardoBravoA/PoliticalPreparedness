@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/LaunchFragment"
         android:name="com.udacity.political.preparedness.launch.LaunchFragment"
-        android:label="fragment_launch"
+        android:label="@string/launch_fragment_label"
         tools:layout="@layout/fragment_launch">
         <action
             android:id="@+id/action_LaunchFragment_to_RepresentativeFragment"
@@ -22,18 +22,20 @@
     <fragment
         android:id="@+id/RepresentativeFragment"
         android:name="com.udacity.political.preparedness.representative.RepresentativeFragment"
-        android:label="fragment_representative"
+        android:label="@string/representative_fragment_label"
         tools:layout="@layout/fragment_representative" />
 
     <fragment
         android:id="@+id/ElectionsFragment"
         android:name="com.udacity.political.preparedness.election.ElectionsFragment"
-        android:label="fragment_elections" />
+        android:label="@string/elections_fragment_label"
+        tools:layout="@layout/fragment_elections" />
 
     <fragment
         android:id="@+id/VoterInfoFragment"
         android:name="com.udacity.political.preparedness.election.VoterInfoFragment"
-        android:label="fragment_voter_info">
+        android:label="@string/voter_info_fragment_label"
+        tools:layout="@layout/fragment_voter_info">
         <argument
             android:name="arg_election_id"
             app:argType="integer" />

@@ -22,4 +22,11 @@
     <style name="Theme.PoliticalPreparedness.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.PoliticalPreparedness.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ElectionTitle">
+        <item name="android:textSize">@dimen/size_20_sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">@dimen/size_4</item>
+    </style>
+
 </resources>
