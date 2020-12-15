@@ -8,5 +8,5 @@ import java.util.*
 data class ElectionModel(
     val name: String,
     val electionDay: Date,
-    val divisionEntity: DivisionModel
+    val divisionModel: DivisionModel
 ) : Parcelable
