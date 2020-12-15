@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.political.preparedness.data.BuildConfig
+import com.udacity.political.preparedness.data.network.adapter.CustomDateAdapter
 import com.udacity.political.preparedness.data.util.Constant
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,6 +27,7 @@ object ApiManager {
             }
 
             val moshi = Moshi.Builder()
+                .add(CustomDateAdapter())
                 .add(KotlinJsonAdapterFactory())
                 .build()
 

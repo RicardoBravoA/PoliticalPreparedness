@@ -1,12 +1,11 @@
 package com.udacity.political.preparedness.data.entity
 
 import android.os.Parcelable
-import com.udacity.political.preparedness.domain.util.ConstantError
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ErrorResponse(
-    val error: Error = ErrorResponse.Error(100, ConstantError.ERROR, "PERMISSION_DENIED")
+    val error: Error
 ) : Parcelable {
 
     @Parcelize
