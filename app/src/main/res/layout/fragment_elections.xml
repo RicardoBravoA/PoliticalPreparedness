@@ -10,6 +10,7 @@
 
         <TextView
             android:id="@+id/upcoming_elections_text_view"
+            style="@style/ElectionTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/upcoming_elections"
@@ -34,6 +35,7 @@
 
         <TextView
             android:id="@+id/saved_elections_text_view"
+            style="@style/ElectionTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/saved_elections"
