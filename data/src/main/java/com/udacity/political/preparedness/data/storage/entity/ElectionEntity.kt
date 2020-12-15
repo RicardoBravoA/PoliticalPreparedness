@@ -1,4 +1,4 @@
-package com.udacity.political.preparedness.network.models
+package com.udacity.political.preparedness.data.storage.entity
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
@@ -11,9 +11,9 @@ import java.util.*
 
 @Parcelize
 @Entity(tableName = "election_table")
-data class Election(
+data class ElectionEntity(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "electionDay") val electionDay: Date,
-    @Embedded(prefix = "division_") @Json(name = "ocdDivisionId") val division: Division
+    @Embedded(prefix = "division_") @Json(name = "ocdDivisionId") val divisionEntity: DivisionEntity
 ) : Parcelable

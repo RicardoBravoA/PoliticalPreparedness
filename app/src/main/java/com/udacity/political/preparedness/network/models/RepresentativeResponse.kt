@@ -1,5 +1,6 @@
 package com.udacity.political.preparedness.network.models
 
+/*
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
@@ -7,4 +8,4 @@ import kotlinx.android.parcel.Parcelize
 data class RepresentativeResponse(
     val offices: List<Office>,
     val officials: List<Official>
-) : Parcelable
+) : Parcelable*/

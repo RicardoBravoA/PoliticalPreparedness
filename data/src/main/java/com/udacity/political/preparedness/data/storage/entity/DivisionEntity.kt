@@ -1,10 +1,10 @@
-package com.udacity.political.preparedness.network.models
+package com.udacity.political.preparedness.data.storage.entity
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Division(
+data class DivisionEntity(
     val id: String,
     val country: String,
     val state: String

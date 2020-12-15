@@ -1,12 +1,14 @@
 package com.udacity.political.preparedness.network.models
 
+/*
 import android.os.Parcelable
 import com.squareup.moshi.JsonClass
+import com.udacity.political.preparedness.data.storage.entity.ElectionEntity
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @JsonClass(generateAdapter = true)
 data class ElectionResponse(
     val kind: String,
-    val elections: List<Election>
-) : Parcelable
+    val electionEntities: List<ElectionEntity>
+) : Parcelable*/

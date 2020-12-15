@@ -1,5 +1,6 @@
 package com.udacity.political.preparedness.network.models
 
+/*
 import android.os.Parcelable
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
@@ -11,4 +12,4 @@ data class ElectionOfficial(
     @Json(name = "officePhoneNumber") val phone: String,
     @Json(name = "faxNumber") val fax: String,
     val emailAddress: String
-) : Parcelable
+) : Parcelable*/
