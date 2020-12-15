@@ -1,16 +1,10 @@
 package com.udacity.political.preparedness.representative
 
-import android.content.Context
-import android.location.Geocoder
-import android.location.Location
 import android.os.Bundle
 import android.view.*
-import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
-import com.udacity.political.preparedness.network.models.Address
-import java.util.Locale
+import com.udacity.political.preparedness.databinding.FragmentRepresentativeBinding
 
-/*
 class RepresentativeFragment : Fragment() {
 
     companion object {
@@ -33,9 +27,14 @@ class RepresentativeFragment : Fragment() {
 
         //TODO: Establish button listeners for field and location search
 
+        val binding = FragmentRepresentativeBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+
+        return binding.root
+
     }
 
-    override fun onRequestPermissionsResult(
+    /*override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
@@ -80,6 +79,6 @@ class RepresentativeFragment : Fragment() {
     private fun hideKeyboard() {
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view!!.windowToken, 0)
-    }
+    }*/
 
-}*/
+}

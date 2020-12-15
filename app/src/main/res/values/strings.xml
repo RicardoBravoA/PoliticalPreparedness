@@ -3,7 +3,9 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="launch_fragment_label">Launch Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="representative_fragment_label">Representative Fragment</string>
+    <string name="elections_fragment_label">Elections Fragment</string>
+    <string name="voter_info_fragment_label">Voter Info Fragment</string>
     <string name="upcoming_elections">Upcoming elections</string>
     <string name="find_my_representatives">Find my representatives</string>
 </resources>
