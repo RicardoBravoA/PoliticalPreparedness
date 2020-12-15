@@ -29,4 +29,13 @@
         <item name="android:padding">@dimen/size_4</item>
     </style>
 
+    <style name="ElectionItemTitle">
+        <item name="android:textSize">@dimen/size_16_sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ElectionItemDescription">
+        <item name="android:textSize">@dimen/size_14_sp</item>
+    </style>
+
 </resources>

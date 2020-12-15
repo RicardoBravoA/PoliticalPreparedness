@@ -27,13 +27,13 @@
 
     <fragment
         android:id="@+id/ElectionsFragment"
-        android:name="com.udacity.political.preparedness.election.ElectionsFragment"
+        android:name="com.udacity.political.preparedness.main.election.ElectionsFragment"
         android:label="@string/elections_fragment_label"
         tools:layout="@layout/fragment_elections" />
 
     <fragment
         android:id="@+id/VoterInfoFragment"
-        android:name="com.udacity.political.preparedness.election.VoterInfoFragment"
+        android:name="com.udacity.political.preparedness.main.voter.VoterInfoFragment"
         android:label="@string/voter_info_fragment_label"
         tools:layout="@layout/fragment_voter_info">
         <argument
