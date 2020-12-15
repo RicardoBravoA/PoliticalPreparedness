@@ -11,7 +11,12 @@ object ElectionMapper {
 
     fun transformElectionResponseToEntity(electionResponse: ElectionResponse): ElectionEntity {
         electionResponse.apply {
-            return ElectionEntity(id, name, electionDay, divisionResponse)
+            return ElectionEntity(
+                id,
+                name,
+                electionDay,
+                transformDivisionResponseToEntity(divisionResponse)
+            )
         }
     }
 
@@ -58,6 +63,12 @@ object ElectionMapper {
     private fun transformDivisionResponseToModel(divisionResponse: DivisionResponse): DivisionModel {
         divisionResponse.apply {
             return DivisionModel(id, country, state)
+        }
+    }
+
+    private fun transformDivisionResponseToEntity(divisionResponse: DivisionResponse): DivisionEntity {
+        divisionResponse.apply {
+            return DivisionEntity(id, country, state)
         }
     }
 
