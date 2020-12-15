@@ -1,9 +1,8 @@
 package com.udacity.political.preparedness.election
 
 import androidx.lifecycle.ViewModel
-import com.udacity.political.preparedness.database.ElectionDao
 
-class VoterInfoViewModel(private val dataSource: ElectionDao) : ViewModel() {
+class VoterInfoViewModel : ViewModel() {
 
     //TODO: Add live data to hold voter info
 
