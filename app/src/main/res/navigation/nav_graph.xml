@@ -36,12 +36,12 @@
         android:name="com.udacity.political.preparedness.main.voter.VoterInfoFragment"
         android:label="@string/voter_info_fragment_label"
         tools:layout="@layout/fragment_voter_info">
-        <argument
+        <!--<argument
             android:name="arg_election_id"
             app:argType="integer" />
         <argument
             android:name="arg_division"
-            app:argType="com.udacity.political.preparedness.network.models.Division" />
+            app:argType="com.udacity.political.preparedness.network.models.Division" />-->
     </fragment>
 
 </navigation>

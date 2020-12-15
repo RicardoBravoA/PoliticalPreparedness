@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.udacity.political.preparedness.R
 import com.udacity.political.preparedness.network.models.Channel
-import com.udacity.political.preparedness.representative.model.Representative
+//import com.udacity.political.preparedness.representative.model.Representative
 
 /*
 class RepresentativeListAdapter :
