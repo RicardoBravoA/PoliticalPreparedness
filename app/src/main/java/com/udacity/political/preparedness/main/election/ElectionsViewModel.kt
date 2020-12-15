@@ -1,8 +1,11 @@
 package com.udacity.political.preparedness.main.election
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.udacity.political.preparedness.domain.model.ElectionModel
 import com.udacity.political.preparedness.domain.usecase.ElectionUseCase
 import com.udacity.political.preparedness.domain.util.ResultType
 import kotlinx.coroutines.launch
@@ -18,11 +21,17 @@ class ElectionsViewModel(private val electionUseCase: ElectionUseCase) : ViewMod
 
     //TODO: Create functions to navigate to saved or upcoming election voter info
 
+    private val _electionList = MutableLiveData<List<ElectionModel>>()
+    val electionList: LiveData<List<ElectionModel>>
+        get() = _electionList
+
+
     fun showData() {
         viewModelScope.launch {
             when (val result = electionUseCase.get()) {
                 is ResultType.Success -> {
                     Log.i("z- data", result.value.toString())
+                    _electionList.value = result.value
                 }
                 is ResultType.Error -> {
                     Log.i("z- error", result.value.toString())

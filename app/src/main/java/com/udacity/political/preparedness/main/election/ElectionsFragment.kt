@@ -39,6 +39,10 @@ class ElectionsFragment : Fragment() {
         val electionAdapter = ElectionListAdapter(::electionClick)
         binding.upcomingElectionsRecyclerView.adapter = electionAdapter
 
+        viewModel.electionList.observe(viewLifecycleOwner, {
+            electionAdapter.submitList(it)
+        })
+
         viewModel.showData()
 
         return binding.root
