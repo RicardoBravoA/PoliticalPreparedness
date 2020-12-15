@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.udacity.political.preparedness.databinding.FragmentElectionsBinding
+import com.udacity.political.preparedness.domain.model.ElectionModel
+import com.udacity.political.preparedness.main.election.adapter.ElectionListAdapter
 
 class ElectionsFragment : Fragment() {
-
-    //TODO: Declare ViewModel
 
     private val viewModel: ElectionsViewModel by lazy {
         ViewModelProvider(this, ElectionsViewModelFactory(requireActivity().application)).get(
@@ -24,8 +24,6 @@ class ElectionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        //TODO: Add ViewModel values and create ViewModel
-
         //TODO: Add binding values
 
         //TODO: Link elections to voter info
@@ -37,9 +35,17 @@ class ElectionsFragment : Fragment() {
         val binding = FragmentElectionsBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
+
+        val electionAdapter = ElectionListAdapter(::electionClick)
+        binding.upcomingElectionsRecyclerView.adapter = electionAdapter
+
         viewModel.showData()
 
         return binding.root
+
+    }
+
+    private fun electionClick(electionModel: ElectionModel) {
 
     }
 
