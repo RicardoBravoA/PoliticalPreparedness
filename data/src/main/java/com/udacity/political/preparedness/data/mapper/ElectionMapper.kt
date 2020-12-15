@@ -1,9 +1,8 @@
 package com.udacity.political.preparedness.data.mapper
 
-import com.udacity.political.preparedness.data.entity.DivisionResponse
 import com.udacity.political.preparedness.data.entity.ElectionResponse
-import com.udacity.political.preparedness.data.storage.entity.DivisionEntity
 import com.udacity.political.preparedness.data.storage.entity.ElectionEntity
+import com.udacity.political.preparedness.data.util.ElectionUtil
 import com.udacity.political.preparedness.domain.model.DivisionModel
 import com.udacity.political.preparedness.domain.model.ElectionModel
 
@@ -15,7 +14,7 @@ object ElectionMapper {
                 id,
                 name,
                 electionDay,
-                transformDivisionResponseToEntity(divisionResponse)
+                divisionId
             )
         }
     }
@@ -31,14 +30,12 @@ object ElectionMapper {
 
     private fun transformElectionEntityToModel(electionEntity: ElectionEntity): ElectionModel {
         electionEntity.apply {
-            return ElectionModel(name, electionDay, transformDivisionEntityToModel(divisionEntity))
+            return ElectionModel(id, name, electionDay, transformDivisionStringToModel(divisionId))
         }
     }
 
-    private fun transformDivisionEntityToModel(divisionEntity: DivisionEntity): DivisionModel {
-        divisionEntity.apply {
-            return DivisionModel(id, country, state)
-        }
+    private fun transformDivisionStringToModel(divisionId: String): DivisionModel {
+        return ElectionUtil.divisionFromJson(divisionId)
     }
 
     fun transformResponseToModel(electionResponseList: List<ElectionResponse>?): List<ElectionModel> {
@@ -53,24 +50,11 @@ object ElectionMapper {
     private fun transformElectionResponseToModel(electionResponse: ElectionResponse): ElectionModel {
         electionResponse.apply {
             return ElectionModel(
+                id,
                 name,
                 electionDay,
-                transformDivisionResponseToModel(divisionResponse)
+                transformDivisionStringToModel(divisionId)
             )
         }
     }
-
-    private fun transformDivisionResponseToModel(divisionResponse: DivisionResponse): DivisionModel {
-        divisionResponse.apply {
-            return DivisionModel(id, country, state)
-        }
-    }
-
-    private fun transformDivisionResponseToEntity(divisionResponse: DivisionResponse): DivisionEntity {
-        divisionResponse.apply {
-            return DivisionEntity(id, country, state)
-        }
-    }
-
-
 }

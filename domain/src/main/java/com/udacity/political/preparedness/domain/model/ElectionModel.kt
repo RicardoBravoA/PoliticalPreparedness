@@ -6,6 +6,7 @@ import java.util.*
 
 @Parcelize
 data class ElectionModel(
+    val id: String,
     val name: String,
     val electionDay: Date,
     val divisionModel: DivisionModel
