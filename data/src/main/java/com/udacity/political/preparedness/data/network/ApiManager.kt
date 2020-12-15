@@ -1,10 +1,10 @@
-package com.udacity.political.preparedness.network
+package com.udacity.political.preparedness.data.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.udacity.political.preparedness.BuildConfig
-import com.udacity.political.preparedness.util.Constant
+import com.udacity.political.preparedness.data.BuildConfig
+import com.udacity.political.preparedness.data.util.Constant
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

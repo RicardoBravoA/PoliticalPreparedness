@@ -1,6 +1,6 @@
-package com.udacity.political.preparedness.network
+package com.udacity.political.preparedness.data.network
 
-import com.udacity.political.preparedness.BuildConfig
+import com.udacity.political.preparedness.data.BuildConfig
 import com.udacity.political.preparedness.data.storage.entity.ElectionEntity
 import retrofit2.Response
 import retrofit2.http.GET

@@ -1,13 +1,13 @@
-package com.udacity.political.preparedness.database
+package com.udacity.political.preparedness.data.storage.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.udacity.political.preparedness.network.models.Election
+import com.udacity.political.preparedness.data.storage.entity.ElectionEntity
 
-@Database(entities = [Election::class], version = 1, exportSchema = false)
+@Database(entities = [ElectionEntity::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class ElectionDatabase : RoomDatabase() {
 

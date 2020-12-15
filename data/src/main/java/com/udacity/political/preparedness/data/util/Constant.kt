@@ -1,4 +1,4 @@
-package com.udacity.political.preparedness.util
+package com.udacity.political.preparedness.data.util
 
 object Constant {
 

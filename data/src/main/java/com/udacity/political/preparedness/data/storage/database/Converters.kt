@@ -1,4 +1,4 @@
-package com.udacity.political.preparedness.database
+package com.udacity.political.preparedness.data.storage.database
 
 import androidx.room.TypeConverter
 import java.util.*
