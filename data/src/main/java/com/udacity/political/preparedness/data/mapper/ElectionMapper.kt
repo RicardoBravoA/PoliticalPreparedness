@@ -41,10 +41,10 @@ object ElectionMapper {
         }
     }
 
-    fun transformResponseToModel(electionResponseList: List<ElectionResponse>): List<ElectionModel> {
+    fun transformResponseToModel(electionResponseList: List<ElectionResponse>?): List<ElectionModel> {
         val electionModelList = mutableListOf<ElectionModel>()
 
-        electionResponseList.forEach {
+        electionResponseList?.forEach {
             electionModelList.add(transformElectionResponseToModel(it))
         }
         return electionModelList

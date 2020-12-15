@@ -2,6 +2,7 @@ package com.udacity.political.preparedness.data.mapper
 
 import com.udacity.political.preparedness.data.entity.ErrorResponse
 import com.udacity.political.preparedness.domain.model.ErrorModel
+import com.udacity.political.preparedness.domain.util.ConstantError
 
 object ErrorMapper {
 
@@ -15,6 +16,22 @@ object ErrorMapper {
                 )
             )
         }
+    }
+
+    fun errorModelDefault(): ErrorModel {
+        return ErrorModel(
+            ErrorModel.Error(
+                100, ConstantError.ERROR, "PERMISSION_DENIED"
+            )
+        )
+    }
+
+    fun errorResponseDefault(): ErrorResponse {
+        return ErrorResponse(
+            ErrorResponse.Error(
+                100, ConstantError.ERROR, "PERMISSION_DENIED"
+            )
+        )
     }
 
 }
