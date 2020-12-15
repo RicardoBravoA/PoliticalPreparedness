@@ -7,5 +7,6 @@
     <string name="elections_fragment_label">Elections Fragment</string>
     <string name="voter_info_fragment_label">Voter Info Fragment</string>
     <string name="upcoming_elections">Upcoming elections</string>
+    <string name="saved_elections">Saved elections</string>
     <string name="find_my_representatives">Find my representatives</string>
 </resources>
