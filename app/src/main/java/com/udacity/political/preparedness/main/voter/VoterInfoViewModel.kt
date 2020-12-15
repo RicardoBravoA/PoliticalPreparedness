@@ -1,4 +1,4 @@
-package com.udacity.political.preparedness.election
+package com.udacity.political.preparedness.main.voter
 
 import androidx.lifecycle.ViewModel
 

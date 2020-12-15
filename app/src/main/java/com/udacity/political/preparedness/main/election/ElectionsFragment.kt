@@ -1,4 +1,4 @@
-package com.udacity.political.preparedness.election
+package com.udacity.political.preparedness.main.election
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.udacity.political.preparedness.databinding.FragmentElectionsBinding
-import com.udacity.political.preparedness.databinding.FragmentLaunchBinding
 
 class ElectionsFragment : Fragment() {
 

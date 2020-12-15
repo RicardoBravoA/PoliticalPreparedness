@@ -1,9 +1,8 @@
-package com.udacity.political.preparedness.election
+package com.udacity.political.preparedness.main.voter
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import com.udacity.political.preparedness.databinding.FragmentElectionsBinding
 import com.udacity.political.preparedness.databinding.FragmentVoterInfoBinding
 
 class VoterInfoFragment : Fragment() {

@@ -1,7 +1,4 @@
-package com.udacity.political.preparedness.election.adapter
-
-import android.widget.ListAdapter
-import com.udacity.political.preparedness.network.models.Election
+package com.udacity.political.preparedness.main.election.adapter
 
 /*
 class ElectionListAdapter(private val clickListener: ElectionListener): ListAdapter<Election, ElectionViewHolder>(ElectionDiffCallback()) {
