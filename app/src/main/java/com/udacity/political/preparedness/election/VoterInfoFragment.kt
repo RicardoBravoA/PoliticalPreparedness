@@ -3,6 +3,8 @@ package com.udacity.political.preparedness.election
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import com.udacity.political.preparedness.databinding.FragmentElectionsBinding
+import com.udacity.political.preparedness.databinding.FragmentVoterInfoBinding
 
 class VoterInfoFragment : Fragment() {
 
@@ -26,6 +28,11 @@ class VoterInfoFragment : Fragment() {
 
         //TODO: Handle save button UI state
         //TODO: cont'd Handle save button clicks
+
+        val binding = FragmentVoterInfoBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+
+        return binding.root
 
     }
 

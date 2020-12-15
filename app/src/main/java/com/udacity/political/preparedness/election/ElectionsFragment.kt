@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.udacity.political.preparedness.databinding.FragmentElectionsBinding
+import com.udacity.political.preparedness.databinding.FragmentLaunchBinding
 
 class ElectionsFragment : Fragment() {
 
@@ -25,6 +27,11 @@ class ElectionsFragment : Fragment() {
         //TODO: Initiate recycler adapters
 
         //TODO: Populate recycler adapters
+
+        val binding = FragmentElectionsBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+
+        return binding.root
 
     }
 
