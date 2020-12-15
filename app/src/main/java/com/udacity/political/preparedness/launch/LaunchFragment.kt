@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.udacity.political.preparedness.databinding.FragmentLaunchBinding
 
 class LaunchFragment : Fragment() {
@@ -17,8 +18,13 @@ class LaunchFragment : Fragment() {
         val binding = FragmentLaunchBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        binding.representativeButton.setOnClickListener { navToRepresentatives() }
-        binding.upcomingButton.setOnClickListener { navToElections() }
+        binding.upcomingButton.setOnClickListener {
+            navToElections()
+        }
+
+        binding.findButton.setOnClickListener {
+            navToRepresentatives()
+        }
 
         return binding.root
     }

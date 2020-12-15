@@ -39,7 +39,7 @@
             app:argType="integer" />
         <argument
             android:name="arg_division"
-            app:argType="com.example.android.politicalpreparedness.network.models.Division" />
+            app:argType="com.udacity.political.preparedness.network.models.Division" />
     </fragment>
 
 </navigation>
