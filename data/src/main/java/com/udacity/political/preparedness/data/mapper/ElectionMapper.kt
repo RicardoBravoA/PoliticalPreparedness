@@ -3,8 +3,6 @@ package com.udacity.political.preparedness.data.mapper
 import com.udacity.political.preparedness.data.response.ElectionItemResponse
 import com.udacity.political.preparedness.data.response.ElectionResponse
 import com.udacity.political.preparedness.data.storage.entity.ElectionEntity
-import com.udacity.political.preparedness.data.util.ElectionUtil
-import com.udacity.political.preparedness.domain.model.DivisionModel
 import com.udacity.political.preparedness.domain.model.ElectionModel
 
 object ElectionMapper {
@@ -31,12 +29,13 @@ object ElectionMapper {
 
     private fun transformElectionEntityToModel(electionEntity: ElectionEntity): ElectionModel {
         electionEntity.apply {
-            return ElectionModel(id, name, electionDay, transformDivisionStringToModel(divisionId))
+            return ElectionModel(
+                id,
+                name,
+                electionDay,
+                DivisionMapper.transformStringToModel(divisionId)
+            )
         }
-    }
-
-    private fun transformDivisionStringToModel(divisionId: String): DivisionModel {
-        return ElectionUtil.divisionFromJson(divisionId)
     }
 
     fun transformResponseToModel(electionResponse: ElectionResponse?): List<ElectionModel> {
@@ -54,7 +53,7 @@ object ElectionMapper {
                 id,
                 name,
                 electionDay,
-                transformDivisionStringToModel(divisionId)
+                DivisionMapper.transformStringToModel(divisionId)
             )
         }
     }

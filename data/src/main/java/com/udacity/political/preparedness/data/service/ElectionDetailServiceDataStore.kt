@@ -10,16 +10,16 @@ import com.udacity.political.preparedness.data.storage.database.ElectionDao
 import com.udacity.political.preparedness.data.storage.database.ElectionDetailDao
 import com.udacity.political.preparedness.data.util.RetrofitErrorUtil
 import com.udacity.political.preparedness.domain.model.ElectionDetailModel
-import com.udacity.political.preparedness.domain.model.ElectionModel
 import com.udacity.political.preparedness.domain.model.ErrorModel
 import com.udacity.political.preparedness.domain.util.ResultType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ElectionDetailServiceDataStore(private val electionDetailDao: ElectionDetailDao) : ElectionDetailDataStore {
+class ElectionDetailServiceDataStore(private val electionDetailDao: ElectionDetailDao) :
+    ElectionDetailDataStore {
 
     override suspend fun get(): ResultType<List<ElectionDetailModel>, ErrorModel> {
-        val response = ApiManager.get().elections()
+        val response = ApiManager.get().electionDetail()
         return if (response.isSuccessful) {
             val electionResponse = response.body()
             save(electionDao, electionResponse?.elections)
@@ -30,15 +30,13 @@ class ElectionDetailServiceDataStore(private val electionDetailDao: ElectionDeta
         }
     }
 
-    private suspend fun save(electionDao: ElectionDao, list: List<ElectionItemResponse>?) =
+    private suspend fun save(electionDetailDao: ElectionDetailDao, detail: ElectionDetailModel?) =
         withContext(Dispatchers.IO) {
-            list?.forEach {
-                electionDao.insertUpcomingElection(
-                    ElectionMapper.transformElectionResponseToEntity(
-                        it
-                    )
+            electionDetailDao.insertElectionDetail(
+                ElectionMapper.transformElectionResponseToEntity(
+                    it
                 )
-            }
+            )
         }
 
 }
