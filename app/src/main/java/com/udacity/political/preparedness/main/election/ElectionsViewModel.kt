@@ -7,11 +7,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.udacity.political.preparedness.domain.model.ElectionModel
 import com.udacity.political.preparedness.domain.usecase.ElectionUseCase
+import com.udacity.political.preparedness.domain.usecase.SavedElectionUseCase
 import com.udacity.political.preparedness.domain.util.ResultType
 import kotlinx.coroutines.launch
 
 //TODO: Construct ViewModel and provide election datasource
-class ElectionsViewModel(private val electionUseCase: ElectionUseCase) : ViewModel() {
+class ElectionsViewModel(
+    private val electionUseCase: ElectionUseCase,
+    private val savedElectionUseCase: SavedElectionUseCase
+) : ViewModel() {
 
     //TODO: Create live data val for upcoming elections
 
