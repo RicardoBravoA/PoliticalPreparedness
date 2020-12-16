@@ -15,6 +15,7 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.udacity.political.preparedness.util.Constant
+import com.udacity.political.preparedness.util.GpsUtil
 
 abstract class LocationFragment : Fragment() {
 
@@ -51,7 +52,7 @@ abstract class LocationFragment : Fragment() {
     private fun activateGPS() {
         GpsUtil(requireContext()).turnOnGPS(object : GpsUtil.GpsListener {
             override fun onGpsStatus(isGPSEnable: Boolean) {
-                validateLocation()
+                locationCallback()
             }
         })
     }
