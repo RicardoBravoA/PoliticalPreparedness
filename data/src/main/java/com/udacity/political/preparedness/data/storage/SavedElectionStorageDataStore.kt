@@ -1,8 +1,8 @@
 package com.udacity.political.preparedness.data.storage
 
 import com.udacity.political.preparedness.data.datastore.ElectionDataStore
-import com.udacity.political.preparedness.data.mapper.ElectionMapper
 import com.udacity.political.preparedness.data.mapper.ErrorMapper
+import com.udacity.political.preparedness.data.mapper.SavedElectionMapper
 import com.udacity.political.preparedness.data.storage.database.SavedElectionDao
 import com.udacity.political.preparedness.domain.model.ElectionModel
 import com.udacity.political.preparedness.domain.model.ErrorModel
@@ -17,7 +17,11 @@ class SavedElectionStorageDataStore(private val savedElectionDao: SavedElectionD
         withContext(Dispatchers.IO) {
             try {
                 val response = savedElectionDao.getSavedElections()
-                return@withContext ResultType.Success(ElectionMapper.transformEntityToModel(response))
+                return@withContext ResultType.Success(
+                    SavedElectionMapper.transformEntityToModel(
+                        response
+                    )
+                )
             } catch (t: Throwable) {
                 return@withContext ResultType.Error(ErrorMapper.errorModelDefault())
             }
