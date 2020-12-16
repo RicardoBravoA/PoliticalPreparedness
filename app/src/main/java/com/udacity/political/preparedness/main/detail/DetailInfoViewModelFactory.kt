@@ -1,13 +1,13 @@
-package com.udacity.political.preparedness.main.voter
+package com.udacity.political.preparedness.main.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class VoterInfoViewModelFactory : ViewModelProvider.Factory {
+class DetailInfoViewModelFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(VoterInfoViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(DetailInfoViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return VoterInfoViewModel() as T
+            return DetailInfoViewModel() as T
         }
         throw IllegalArgumentException("Unable to construct view model")
     }

@@ -1,11 +1,11 @@
-package com.udacity.political.preparedness.main.voter
+package com.udacity.political.preparedness.main.detail
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import com.udacity.political.preparedness.databinding.FragmentVoterInfoBinding
 
-class VoterInfoFragment : Fragment() {
+class DetailInfoFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
