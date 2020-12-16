@@ -1,6 +1,7 @@
 package com.udacity.political.preparedness.main.election
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,17 +40,30 @@ class ElectionsFragment : Fragment() {
         val electionAdapter = ElectionListAdapter(::electionClick)
         binding.upcomingElectionsRecyclerView.adapter = electionAdapter
 
+        val savedElectionAdapter = ElectionListAdapter(::savedElectionClick)
+        binding.savedElectionsRecyclerView.adapter = savedElectionAdapter
+
         viewModel.electionList.observe(viewLifecycleOwner, {
             electionAdapter.submitList(it)
         })
 
+        viewModel.savedElectionList.observe(viewLifecycleOwner, {
+            Log.i("z- savedElectionList", it.toString())
+            savedElectionAdapter.submitList(it)
+        })
+
         viewModel.showData()
+        viewModel.showSavedElections()
 
         return binding.root
 
     }
 
     private fun electionClick(electionModel: ElectionModel) {
+
+    }
+
+    private fun savedElectionClick(electionModel: ElectionModel) {
 
     }
 
