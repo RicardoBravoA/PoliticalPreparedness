@@ -48,4 +48,18 @@ class ElectionsViewModel(
         }
     }
 
+    fun loadSavedElections() {
+        viewModelScope.launch {
+            when (val result = savedElectionUseCase.get()) {
+                is ResultType.Success -> {
+                    Log.i("z- data", result.value.toString())
+                    _savedElectionList.value = result.value
+                }
+                is ResultType.Error -> {
+                    Log.i("z- error", result.value.toString())
+                }
+            }
+        }
+    }
+
 }
