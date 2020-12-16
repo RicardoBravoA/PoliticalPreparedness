@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.udacity.political.preparedness.databinding.FragmentVoterInfoBinding
-import com.udacity.political.preparedness.main.election.ElectionsViewModel
-import com.udacity.political.preparedness.main.election.ElectionsViewModelFactory
 
 class DetailInfoFragment : Fragment() {
 
@@ -43,6 +41,8 @@ class DetailInfoFragment : Fragment() {
                 DetailInfoViewModel::class.java
             )
         }
+
+        viewModel.showData(args.id)
 
         return binding.root
 
