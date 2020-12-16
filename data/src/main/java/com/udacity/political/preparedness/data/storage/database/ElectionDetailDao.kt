@@ -4,15 +4,15 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.udacity.political.preparedness.data.storage.entity.SavedElectionEntity
+import com.udacity.political.preparedness.data.storage.entity.ElectionDetailEntity
 
 @Dao
 interface ElectionDetailDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertElectionDetail(detail: ElectionDetailDao)
+    fun insertElectionDetail(detail: ElectionDetailEntity)
 
     @Query("select * from election_detail_table where id = :id")
-    fun getElectionDetail(id: String): List<SavedElectionEntity>
+    fun getElectionDetail(id: String): ElectionDetailEntity
 
 }

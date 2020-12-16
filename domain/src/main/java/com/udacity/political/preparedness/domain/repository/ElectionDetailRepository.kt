@@ -6,6 +6,6 @@ import com.udacity.political.preparedness.domain.util.ResultType
 
 interface ElectionDetailRepository {
 
-    suspend fun get(): ResultType<List<ElectionDetailModel>, ErrorModel>
+    suspend fun get(id: String): ResultType<ElectionDetailModel, ErrorModel>
 
 }

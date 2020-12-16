@@ -7,8 +7,8 @@ import com.udacity.political.preparedness.domain.util.ResultType
 
 class ElectionDetailUseCase(private val electionRepository: ElectionDetailRepository) {
 
-    suspend fun get(): ResultType<List<ElectionDetailModel>, ErrorModel> {
-        return electionRepository.get()
+    suspend fun get(id: String): ResultType<ElectionDetailModel, ErrorModel> {
+        return electionRepository.get(id)
     }
 
 }
