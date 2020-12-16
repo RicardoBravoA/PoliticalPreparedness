@@ -1,7 +1,8 @@
 package com.udacity.political.preparedness.data.network
 
 import com.udacity.political.preparedness.data.BuildConfig
-import com.udacity.political.preparedness.data.entity.ElectionResponse
+import com.udacity.political.preparedness.data.response.ElectionDetailResponse
+import com.udacity.political.preparedness.data.response.ElectionResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,5 +13,11 @@ interface ApiInterface {
     suspend fun elections(
         @Query("key") key: String = BuildConfig.CIVIC_API_KEY
     ): Response<ElectionResponse>
+
+    @GET("voterinfo")
+    suspend fun electionDetail(
+        @Query("electionId") electionId: String,
+        @Query("key") key: String = BuildConfig.CIVIC_API_KEY
+    ): Response<ElectionDetailResponse>
 
 }

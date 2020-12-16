@@ -1,4 +1,4 @@
-package com.udacity.political.preparedness.data.entity
+package com.udacity.political.preparedness.data.response
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

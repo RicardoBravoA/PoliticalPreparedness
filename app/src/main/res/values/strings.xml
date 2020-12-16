@@ -9,4 +9,7 @@
     <string name="upcoming_elections">Upcoming elections</string>
     <string name="saved_elections">Saved elections</string>
     <string name="find_my_representatives">Find my representatives</string>
+    <string name="voting_locations">Voting Locations</string>
+    <string name="ballot_information">Ballot Information</string>
+    <string name="election_information">Election Information</string>
 </resources>

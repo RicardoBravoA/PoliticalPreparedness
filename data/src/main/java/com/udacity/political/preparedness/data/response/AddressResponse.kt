@@ -1,10 +1,10 @@
-package com.udacity.political.preparedness.network.models
+package com.udacity.political.preparedness.data.response
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Address(
+data class AddressResponse(
     val line1: String,
     val line2: String? = null,
     val city: String,

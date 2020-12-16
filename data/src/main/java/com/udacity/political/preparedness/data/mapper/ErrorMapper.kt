@@ -1,6 +1,6 @@
 package com.udacity.political.preparedness.data.mapper
 
-import com.udacity.political.preparedness.data.entity.ErrorResponse
+import com.udacity.political.preparedness.data.response.ErrorResponse
 import com.udacity.political.preparedness.domain.model.ErrorModel
 import com.udacity.political.preparedness.domain.util.ConstantError
 
