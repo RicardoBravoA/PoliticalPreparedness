@@ -13,9 +13,6 @@ interface ElectionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUpcomingElection(election: ElectionEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertSaveElection(election: ElectionEntity)
-
     //TODO: Add select all election query
 
     @Query("select * from election_table")
