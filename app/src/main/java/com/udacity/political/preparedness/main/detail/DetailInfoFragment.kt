@@ -3,7 +3,11 @@ package com.udacity.political.preparedness.main.detail
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.udacity.political.preparedness.databinding.FragmentVoterInfoBinding
+import com.udacity.political.preparedness.main.election.ElectionsViewModel
+import com.udacity.political.preparedness.main.election.ElectionsViewModelFactory
 
 class DetailInfoFragment : Fragment() {
 
@@ -30,6 +34,15 @@ class DetailInfoFragment : Fragment() {
 
         val binding = FragmentVoterInfoBinding.inflate(inflater)
         binding.lifecycleOwner = this
+
+
+        val args by navArgs<DetailInfoFragmentArgs>()
+
+        val viewModel: DetailInfoViewModel by lazy {
+            ViewModelProvider(this, DetailInfoViewModelFactory(requireActivity().application)).get(
+                DetailInfoViewModel::class.java
+            )
+        }
 
         return binding.root
 
