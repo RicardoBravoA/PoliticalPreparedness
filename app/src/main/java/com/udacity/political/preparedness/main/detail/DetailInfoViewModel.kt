@@ -1,8 +1,9 @@
 package com.udacity.political.preparedness.main.detail
 
 import androidx.lifecycle.ViewModel
+import com.udacity.political.preparedness.domain.usecase.ElectionDetailUseCase
 
-class DetailInfoViewModel : ViewModel() {
+class DetailInfoViewModel(private val electionDetailUseCase: ElectionDetailUseCase) : ViewModel() {
 
     //TODO: Add live data to hold voter info
 
