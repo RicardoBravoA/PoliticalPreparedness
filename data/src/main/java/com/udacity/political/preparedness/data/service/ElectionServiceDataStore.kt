@@ -10,6 +10,8 @@ import com.udacity.political.preparedness.data.util.RetrofitErrorUtil
 import com.udacity.political.preparedness.domain.model.ElectionModel
 import com.udacity.political.preparedness.domain.model.ErrorModel
 import com.udacity.political.preparedness.domain.util.ResultType
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class ElectionServiceDataStore(private val electionDao: ElectionDao) : ElectionDataStore {
 
@@ -25,14 +27,15 @@ class ElectionServiceDataStore(private val electionDao: ElectionDao) : ElectionD
         }
     }
 
-    private fun save(electionDao: ElectionDao, list: List<ElectionItemResponse>?) {
-        list?.forEach {
-            electionDao.insertUpcomingElection(
-                ElectionMapper.transformElectionResponseToEntity(
-                    it
+    private suspend fun save(electionDao: ElectionDao, list: List<ElectionItemResponse>?) =
+        withContext(Dispatchers.IO) {
+            list?.forEach {
+                electionDao.insertUpcomingElection(
+                    ElectionMapper.transformElectionResponseToEntity(
+                        it
+                    )
                 )
-            )
+            }
         }
-    }
 
 }

@@ -48,7 +48,7 @@ class ElectionsViewModel(
         }
     }
 
-    fun loadSavedElections() {
+    fun showSavedElections() {
         viewModelScope.launch {
             when (val result = savedElectionUseCase.get()) {
                 is ResultType.Success -> {
