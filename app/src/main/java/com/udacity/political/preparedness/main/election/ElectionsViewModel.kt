@@ -29,6 +29,10 @@ class ElectionsViewModel(
     val electionList: LiveData<List<ElectionModel>>
         get() = _electionList
 
+    private val _savedElectionList = MutableLiveData<List<ElectionModel>>()
+    val savedElectionList: LiveData<List<ElectionModel>>
+        get() = _savedElectionList
+
 
     fun showData() {
         viewModelScope.launch {
