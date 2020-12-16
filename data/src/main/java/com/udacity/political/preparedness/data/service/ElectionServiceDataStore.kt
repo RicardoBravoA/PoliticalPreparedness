@@ -1,7 +1,7 @@
 package com.udacity.political.preparedness.data.service
 
 import com.udacity.political.preparedness.data.datastore.ElectionDataStore
-import com.udacity.political.preparedness.data.entity.ElectionItemResponse
+import com.udacity.political.preparedness.data.response.ElectionItemResponse
 import com.udacity.political.preparedness.data.mapper.ElectionMapper
 import com.udacity.political.preparedness.data.mapper.ErrorMapper
 import com.udacity.political.preparedness.data.network.ApiManager

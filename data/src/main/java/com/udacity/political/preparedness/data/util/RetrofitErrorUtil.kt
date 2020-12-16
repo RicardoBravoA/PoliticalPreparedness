@@ -1,6 +1,6 @@
 package com.udacity.political.preparedness.data.util
 
-import com.udacity.political.preparedness.data.entity.ErrorResponse
+import com.udacity.political.preparedness.data.response.ErrorResponse
 import com.udacity.political.preparedness.data.mapper.ErrorMapper
 import com.udacity.political.preparedness.data.network.ApiManager
 import retrofit2.Response
