@@ -18,6 +18,8 @@ abstract class ElectionDatabase : RoomDatabase() {
 
     abstract val electionDao: ElectionDao
 
+    abstract val electionDetailDao: ElectionDetailDao
+
     abstract val savedElectionDao: SavedElectionDao
 
     companion object {
