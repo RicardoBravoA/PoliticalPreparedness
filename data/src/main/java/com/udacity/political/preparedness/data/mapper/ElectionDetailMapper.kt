@@ -6,7 +6,21 @@ import com.udacity.political.preparedness.domain.model.ElectionDetailModel
 
 object ElectionDetailMapper {
 
-    private fun transformEntityToModel(electionDetailEntity: ElectionDetailEntity): ElectionDetailModel {
+    fun transformResponseToEntity(electionDetailResponse: ElectionDetailResponse): ElectionDetailEntity {
+        val election = electionDetailResponse.election
+        val administration = electionDetailResponse.state.electionAdministrationBody
+        return ElectionDetailEntity(
+            election.id,
+            election.name,
+            election.electionDay,
+            election.divisionId,
+            administration.electionInfoUrl,
+            administration.votingLocationFinderUrl,
+            administration.ballotInfoUrl
+        )
+    }
+
+    fun transformEntityToModel(electionDetailEntity: ElectionDetailEntity): ElectionDetailModel {
         electionDetailEntity.apply {
             return ElectionDetailModel(
                 id,

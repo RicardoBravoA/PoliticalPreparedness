@@ -12,7 +12,7 @@ data class ElectionDetailEntity(
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "electionDay") val electionDay: Date,
     @Json(name = "ocdDivisionId") val divisionId: String,
-    @Json(name = "electionInfoUrl") val electionInfoUrl: String,
-    @Json(name = "votingLocationFinderUrl") val votingLocationFinderUrl: String,
-    @Json(name = "ballotInfoUrl") val ballotInfoUrl: String
+    @Json(name = "electionInfoUrl") val electionInfoUrl: String?,
+    @Json(name = "votingLocationFinderUrl") val votingLocationFinderUrl: String?,
+    @Json(name = "ballotInfoUrl") val ballotInfoUrl: String?
 )
