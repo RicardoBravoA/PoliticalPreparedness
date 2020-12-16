@@ -29,19 +29,20 @@
         android:id="@+id/ElectionsFragment"
         android:name="com.udacity.political.preparedness.main.election.ElectionsFragment"
         android:label="@string/elections_fragment_label"
-        tools:layout="@layout/fragment_elections" />
+        tools:layout="@layout/fragment_elections">
+        <action
+            android:id="@+id/action_ElectionsFragment_to_VoterInfoFragment"
+            app:destination="@id/VoterInfoFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/VoterInfoFragment"
         android:name="com.udacity.political.preparedness.main.detail.DetailInfoFragment"
         android:label="@string/voter_info_fragment_label"
         tools:layout="@layout/fragment_voter_info">
-        <!--<argument
-            android:name="arg_election_id"
-            app:argType="integer" />
         <argument
-            android:name="arg_division"
-            app:argType="com.udacity.political.preparedness.network.models.Division" />-->
+            android:name="id"
+            app:argType="string" />
     </fragment>
 
 </navigation>
