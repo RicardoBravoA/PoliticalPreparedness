@@ -1,6 +1,7 @@
 package com.udacity.political.preparedness.data.service
 
 import com.udacity.political.preparedness.data.datastore.ElectionDataStore
+import com.udacity.political.preparedness.data.entity.ElectionItemResponse
 import com.udacity.political.preparedness.data.mapper.ElectionMapper
 import com.udacity.political.preparedness.data.mapper.ErrorMapper
 import com.udacity.political.preparedness.data.network.ApiManager
@@ -16,10 +17,21 @@ class ElectionServiceDataStore(private val electionDao: ElectionDao) : ElectionD
         val response = ApiManager.get().elections()
         return if (response.isSuccessful) {
             val electionResponse = response.body()
+            save(electionDao, electionResponse?.elections)
             ResultType.Success(ElectionMapper.transformResponseToModel(electionResponse))
         } else {
             val error = RetrofitErrorUtil.parseError(response)!!
             ResultType.Error(ErrorMapper.transformResponseToModel(error))
+        }
+    }
+
+    private fun save(electionDao: ElectionDao, list: List<ElectionItemResponse>?) {
+        list?.forEach {
+            electionDao.insertUpcomingElection(
+                ElectionMapper.transformElectionResponseToEntity(
+                    it
+                )
+            )
         }
     }
 
