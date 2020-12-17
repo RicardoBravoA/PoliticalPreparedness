@@ -44,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
                 android:text="@string/election_information"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/election_date_text_view" />
@@ -67,24 +68,25 @@
                 app:layout_constraintTop_toBottomOf="@id/voting_location_text_view" />
 
             <TextView
-                android:id="@+id/address_line_text_view"
-                style="@style/ElectionDetailItem"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ballot_text_view" />
-
-            <TextView
                 android:id="@+id/address_header_text_view"
                 style="@style/ElectionDetailTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
                 android:text="@string/address_information"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/address_line_text_view" />
+                app:layout_constraintTop_toBottomOf="@id/ballot_text_view" />
+
+            <TextView
+                android:id="@+id/address_line_text_view"
+                style="@style/ElectionDetailItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/address_header_text_view" />
 
             <Button
                 android:id="@+id/follow_button"

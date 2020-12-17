@@ -56,6 +56,16 @@ class DetailInfoFragment : LocationFragment() {
             viewModel.validateInternet()
         }
 
+        viewModel.data.observe(viewLifecycleOwner, {
+            binding.toolbarName.title = it.name
+            binding.electionDateTextView.text = it.electionDay.toString()
+            binding.stateHeaderTextView.visible(true)
+            binding.addressHeaderTextView.visible(true)
+            binding.votingLocationTextView.text = it.votingLocationFinderUrl
+            binding.ballotTextView.text = it.ballotInfoUrl
+            binding.addressLineTextView.text = it.divisionModel
+        })
+
         return binding.root
     }
 

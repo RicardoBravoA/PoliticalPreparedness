@@ -4,7 +4,7 @@ import com.udacity.political.preparedness.data.datastore.ElectionDetailDataStore
 import com.udacity.political.preparedness.data.mapper.ElectionDetailMapper
 import com.udacity.political.preparedness.data.mapper.ErrorMapper
 import com.udacity.political.preparedness.data.network.ApiManager
-import com.udacity.political.preparedness.data.response.ElectionDetailResponse
+import com.udacity.political.preparedness.data.response.detail.ElectionDetailResponse
 import com.udacity.political.preparedness.data.storage.database.ElectionDetailDao
 import com.udacity.political.preparedness.data.util.RetrofitErrorUtil
 import com.udacity.political.preparedness.domain.model.ElectionDetailModel

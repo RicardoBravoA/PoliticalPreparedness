@@ -1,6 +1,6 @@
 package com.udacity.political.preparedness.data.mapper
 
-import com.udacity.political.preparedness.data.response.ElectionDetailResponse
+import com.udacity.political.preparedness.data.response.detail.ElectionDetailResponse
 import com.udacity.political.preparedness.data.storage.entity.ElectionDetailEntity
 import com.udacity.political.preparedness.domain.model.ElectionDetailModel
 

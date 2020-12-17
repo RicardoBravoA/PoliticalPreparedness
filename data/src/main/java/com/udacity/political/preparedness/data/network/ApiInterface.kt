@@ -1,7 +1,7 @@
 package com.udacity.political.preparedness.data.network
 
 import com.udacity.political.preparedness.data.BuildConfig
-import com.udacity.political.preparedness.data.response.ElectionDetailResponse
+import com.udacity.political.preparedness.data.response.detail.ElectionDetailResponse
 import com.udacity.political.preparedness.data.response.ElectionResponse
 import com.udacity.political.preparedness.data.response.geocode.GeocodeResponse
 import com.udacity.political.preparedness.data.util.Constant
