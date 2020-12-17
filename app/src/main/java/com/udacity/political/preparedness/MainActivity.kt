@@ -1,11 +1,11 @@
 package com.udacity.political.preparedness
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.udacity.political.preparedness.common.LocationActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : LocationActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

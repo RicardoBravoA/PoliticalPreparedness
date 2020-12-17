@@ -38,4 +38,12 @@
         <item name="android:textSize">@dimen/size_14_sp</item>
     </style>
 
+    <style name="ElectionDetailItem" parent="ElectionItemDescription">
+        <item name="android:padding">@dimen/default_padding</item>
+    </style>
+
+    <style name="ElectionDetailTitle" parent="ElectionItemTitle">
+        <item name="android:padding">@dimen/default_padding</item>
+    </style>
+
 </resources>

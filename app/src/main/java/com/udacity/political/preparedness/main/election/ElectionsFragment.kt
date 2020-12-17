@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.udacity.political.preparedness.databinding.FragmentElectionsBinding
 import com.udacity.political.preparedness.domain.model.ElectionModel
 import com.udacity.political.preparedness.main.election.adapter.ElectionListAdapter
@@ -60,11 +61,13 @@ class ElectionsFragment : Fragment() {
     }
 
     private fun electionClick(electionModel: ElectionModel) {
-
+        /*findNavController().navigate(
+            ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(electionModel.id)
+        )*/
     }
 
     private fun savedElectionClick(electionModel: ElectionModel) {
-
+        //Do nothing
     }
 
     //TODO: Refresh adapters when fragment loads
