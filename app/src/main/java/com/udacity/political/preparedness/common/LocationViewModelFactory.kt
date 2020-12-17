@@ -15,7 +15,7 @@ class LocationViewModelFactory : ViewModelProvider.Factory {
             val dataRepository = GeocodeDataRepository(GeocodeDataStoreFactory())
             val useCase = GeocodeUseCase(dataRepository)
 
-            return DetailInfoViewModel(useCase) as T
+            return LocationViewModel(useCase) as T
         }
         throw IllegalArgumentException("Unable to construct view model")
     }
