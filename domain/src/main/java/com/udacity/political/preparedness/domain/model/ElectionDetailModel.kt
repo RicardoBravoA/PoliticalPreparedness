@@ -12,5 +12,6 @@ data class ElectionDetailModel(
     val divisionModel: DivisionModel,
     val electionInfoUrl: String?,
     val votingLocationFinderUrl: String?,
-    val ballotInfoUrl: String?
+    val ballotInfoUrl: String?,
+    val address: String?
 ) : Parcelable

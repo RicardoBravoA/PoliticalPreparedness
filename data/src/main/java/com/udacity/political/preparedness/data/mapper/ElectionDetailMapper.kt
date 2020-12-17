@@ -1,6 +1,7 @@
 package com.udacity.political.preparedness.data.mapper
 
 import com.udacity.political.preparedness.data.response.detail.ElectionDetailResponse
+import com.udacity.political.preparedness.data.response.detail.NormalizedInputResponse
 import com.udacity.political.preparedness.data.storage.entity.ElectionDetailEntity
 import com.udacity.political.preparedness.domain.model.ElectionDetailModel
 
@@ -16,7 +17,8 @@ object ElectionDetailMapper {
             election.divisionId,
             administration.electionInfoUrl,
             administration.votingLocationFinderUrl,
-            administration.ballotInfoUrl
+            administration.ballotInfoUrl,
+            transformAddress(electionDetailResponse.normalizedInput)
         )
     }
 
@@ -29,7 +31,8 @@ object ElectionDetailMapper {
                 DivisionMapper.transformStringToModel(divisionId),
                 electionInfoUrl,
                 votingLocationFinderUrl,
-                ballotInfoUrl
+                ballotInfoUrl,
+                address
             )
         }
     }
@@ -44,7 +47,15 @@ object ElectionDetailMapper {
             DivisionMapper.transformStringToModel(election.divisionId),
             administration.electionInfoUrl,
             administration.votingLocationFinderUrl,
-            administration.ballotInfoUrl
+            administration.ballotInfoUrl,
+            transformAddress(electionDetailResponse.normalizedInput)
         )
+    }
+
+    private fun transformAddress(normalizedInputResponse: NormalizedInputResponse?): String? {
+        normalizedInputResponse?.let {
+            return "${it.line1}, ${it.city}, ${it.state} ${it.zip}"
+        }
+        return null
     }
 }

@@ -63,7 +63,10 @@ class DetailInfoFragment : LocationFragment() {
             binding.addressHeaderTextView.visible(true)
             binding.votingLocationTextView.text = it.votingLocationFinderUrl
             binding.ballotTextView.text = it.ballotInfoUrl
-            binding.addressLineTextView.text = it.divisionModel
+            it.address?.let { address ->
+                binding.addressLineTextView.text = address
+                binding.addressLineTextView.visible(true)
+            }
         })
 
         return binding.root
