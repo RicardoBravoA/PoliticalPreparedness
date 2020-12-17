@@ -16,8 +16,11 @@ import kotlinx.coroutines.withContext
 class ElectionDetailServiceDataStore(private val electionDetailDao: ElectionDetailDao) :
     ElectionDetailDataStore {
 
-    override suspend fun get(id: String): ResultType<ElectionDetailModel, ErrorModel> {
-        val response = ApiManager.get().electionDetail(id)
+    override suspend fun get(
+        id: String,
+        address: String
+    ): ResultType<ElectionDetailModel, ErrorModel> {
+        val response = ApiManager.get().electionDetail(id, address)
         return if (response.isSuccessful) {
             val detailResponse = response.body()
             save(electionDetailDao, detailResponse)

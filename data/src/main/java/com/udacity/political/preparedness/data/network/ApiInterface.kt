@@ -20,6 +20,7 @@ interface ApiInterface {
     @GET("voterinfo")
     suspend fun electionDetail(
         @Query("electionId") electionId: String,
+        @Query("address") address: String,
         @Query("key") key: String = BuildConfig.CIVIC_API_KEY
     ): Response<ElectionDetailResponse>
 

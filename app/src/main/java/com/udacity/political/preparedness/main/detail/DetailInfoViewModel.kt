@@ -29,9 +29,9 @@ class DetailInfoViewModel(private val electionDetailUseCase: ElectionDetailUseCa
      * Hint: The saved state can be accomplished in multiple ways. It is directly related to how elections are saved/removed from the database.
      */
 
-    fun showData(id: String) {
+    fun showData(id: String, address: String) {
         viewModelScope.launch {
-            when (val result = electionDetailUseCase.get(id)) {
+            when (val result = electionDetailUseCase.get(id, address)) {
                 is ResultType.Success -> {
                     Log.i("z- data", result.value.toString())
                     _data.value = result.value

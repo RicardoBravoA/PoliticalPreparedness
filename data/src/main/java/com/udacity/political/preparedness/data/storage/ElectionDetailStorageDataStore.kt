@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 class ElectionDetailStorageDataStore(private val electionDetailDao: ElectionDetailDao) :
     ElectionDetailDataStore {
 
-    override suspend fun get(id: String): ResultType<ElectionDetailModel, ErrorModel> =
+    override suspend fun get(id: String, address: String): ResultType<ElectionDetailModel, ErrorModel> =
         withContext(Dispatchers.IO) {
             try {
                 val response = electionDetailDao.getElectionDetail(id)
