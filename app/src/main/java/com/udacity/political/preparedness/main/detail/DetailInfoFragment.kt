@@ -3,13 +3,37 @@ package com.udacity.political.preparedness.main.detail
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
+import com.udacity.political.preparedness.common.LocationActivity
 import com.udacity.political.preparedness.databinding.FragmentVoterInfoBinding
 
 class DetailInfoFragment : Fragment() {
 
     override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+
+        val binding = FragmentVoterInfoBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+
+//        val args by navArgs<DetailInfoFragmentArgs>()
+
+        /*val viewModel: DetailInfoViewModel by lazy {
+            ViewModelProvider(this, DetailInfoViewModelFactory(requireActivity().application)).get(
+                DetailInfoViewModel::class.java
+            )
+        }*/
+
+//        viewModel.showData(args.id)
+
+        (requireActivity() as LocationActivity).permissionGPS()
+
+        return binding.root
+    }
+
+    /*override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -20,9 +44,10 @@ class DetailInfoFragment : Fragment() {
         //TODO: Add binding values
 
         //TODO: Populate voter info -- hide views without provided data.
-        /**
-        Hint: You will need to ensure proper data is provided from previous fragment.
-         */
+        */
+    /**
+    Hint: You will need to ensure proper data is provided from previous fragment.
+     *//*
 
 
         //TODO: Handle loading of URLs
@@ -46,7 +71,7 @@ class DetailInfoFragment : Fragment() {
 
         return binding.root
 
-    }
+    }*/
 
     //TODO: Create method to load URL intents
 

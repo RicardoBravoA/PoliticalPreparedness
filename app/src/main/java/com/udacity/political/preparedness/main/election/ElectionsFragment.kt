@@ -61,9 +61,9 @@ class ElectionsFragment : Fragment() {
     }
 
     private fun electionClick(electionModel: ElectionModel) {
-        findNavController().navigate(
+        /*findNavController().navigate(
             ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(electionModel.id)
-        )
+        )*/
     }
 
     private fun savedElectionClick(electionModel: ElectionModel) {

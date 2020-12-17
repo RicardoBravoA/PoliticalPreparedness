@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     android:label="nav_graph"
-    app:startDestination="@id/LaunchFragment">
+    app:startDestination="@id/VoterInfoFragment">
 
     <fragment
         android:id="@+id/LaunchFragment"
@@ -40,9 +40,9 @@
         android:name="com.udacity.political.preparedness.main.detail.DetailInfoFragment"
         android:label="@string/voter_info_fragment_label"
         tools:layout="@layout/fragment_voter_info">
-        <argument
+        <!--<argument
             android:name="id"
-            app:argType="string" />
+            app:argType="string" />-->
     </fragment>
 
 </navigation>
