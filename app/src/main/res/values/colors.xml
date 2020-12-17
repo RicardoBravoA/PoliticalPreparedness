@@ -7,4 +7,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray50">#7F7F7F</color>
+    <color name="hyperlink">#1835CA</color>
 </resources>
