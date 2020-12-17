@@ -1,12 +1,12 @@
 package com.udacity.political.preparedness.main.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
-import com.udacity.political.preparedness.common.LocationActivity
+import com.udacity.political.preparedness.common.LocationFragment
 import com.udacity.political.preparedness.databinding.FragmentVoterInfoBinding
 
-class DetailInfoFragment : Fragment() {
+class DetailInfoFragment : LocationFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +28,10 @@ class DetailInfoFragment : Fragment() {
 
 //        viewModel.showData(args.id)
 
-        (requireActivity() as LocationActivity).permissionGPS()
+        binding.followButton.setOnClickListener {
+            Log.i("z- myLocation", "abc: ${location?.latitude} - ${location?.longitude}")
+        }
+
 
         return binding.root
     }

@@ -6,46 +6,44 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.udacity.political.preparedness.util.Constant
 import com.udacity.political.preparedness.util.GpsUtil
 
-open class LocationActivity : AppCompatActivity(), LocationListener {
+abstract class LocationActivity : AppCompatActivity(), LocationListener {
 
     private lateinit var locationManager: LocationManager
+    private var updateLocation: UpdateLocation? = null
+
+    fun setOnUpdateLocation(updateLocation: UpdateLocation) {
+        this.updateLocation = updateLocation
+    }
 
     fun permissionGPS() {
-        Log.i("z- permission", "GPS")
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) !=
             PackageManager.PERMISSION_GRANTED
         ) {
-            Log.i("z- permissionX", "0")
             if (ActivityCompat.shouldShowRequestPermissionRationale(
                     this,
                     Manifest.permission.ACCESS_FINE_LOCATION
                 )
             ) {
-                Log.i("z- permissionX", "1")
                 ActivityCompat.requestPermissions(
                     this,
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1
                 )
             } else {
-                Log.i("z- permissionX", "2")
                 ActivityCompat.requestPermissions(
                     this,
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1
                 )
             }
         } else {
-            Log.i("z- permissionX", "3")
             activateGPS()
         }
     }
@@ -69,23 +67,21 @@ open class LocationActivity : AppCompatActivity(), LocationListener {
     private fun activateGPS() {
         GpsUtil(this).turnOnGPS(object : GpsUtil.GpsListener {
             override fun onGpsStatus(isGPSEnable: Boolean) {
-                Log.i("z- activateGPS", isGPSEnable.toString())
                 getLocation()
             }
         })
     }
 
     override fun onLocationChanged(location: Location) {
-        Log.i("z- location", "${location.latitude} - ${location.longitude}")
+        updateLocation?.onUpdateLocation(location)
     }
 
     override fun onProviderEnabled(provider: String) {
+        //Do nothing
     }
 
     override fun onProviderDisabled(provider: String) {
-    }
-
-    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+        //Do nothing
     }
 
     override fun onRequestPermissionsResult(
@@ -97,29 +93,22 @@ open class LocationActivity : AppCompatActivity(), LocationListener {
                 if (grantResults.isNotEmpty() && grantResults[0] ==
                     PackageManager.PERMISSION_GRANTED
                 ) {
-                    Log.i("z- permission", "0")
                     if ((ContextCompat.checkSelfPermission(
                             this,
                             Manifest.permission.ACCESS_FINE_LOCATION
                         ) ==
                                 PackageManager.PERMISSION_GRANTED)
                     ) {
-                        Log.i("z- permission", "concedido")
                         activateGPS()
                     }
-                } else {
-                    Log.i("z- permission", "no concedido")
                 }
                 return
             }
-            Constant.GPS -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.i("z- gps", "1")
-                } else {
-                    Log.i("z- gps", "2")
-                }
-            }
         }
+    }
+
+    interface UpdateLocation {
+        fun onUpdateLocation(location: Location)
     }
 
 }
