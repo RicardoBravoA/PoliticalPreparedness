@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-open class LocationFragment : Fragment(), LocationActivity.UpdateLocation {
+open class LocationFragment : Fragment(), LocationActivity.UpdateLocation,
+    LocationActivity.GPSStatus {
 
     internal var location: Location? = null
+    internal var gpsStatus: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,12 +24,18 @@ open class LocationFragment : Fragment(), LocationActivity.UpdateLocation {
         (requireActivity() as LocationActivity).setOnUpdateLocation(this)
         (requireActivity() as LocationActivity).permissionGPS()
 
+
+
         return view
     }
 
     override fun onUpdateLocation(location: Location) {
         this.location = location
         Log.i("z- onUpdateLocation", location.toString())
+    }
+
+    override fun onGPSStatus(status: Boolean) {
+        this.gpsStatus = status
     }
 
 }

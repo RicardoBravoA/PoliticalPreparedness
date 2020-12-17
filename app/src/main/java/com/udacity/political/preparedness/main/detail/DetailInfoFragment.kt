@@ -3,6 +3,8 @@ package com.udacity.political.preparedness.main.detail
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.udacity.political.preparedness.common.LocationFragment
 import com.udacity.political.preparedness.databinding.FragmentVoterInfoBinding
 
@@ -18,15 +20,15 @@ class DetailInfoFragment : LocationFragment() {
         val binding = FragmentVoterInfoBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-//        val args by navArgs<DetailInfoFragmentArgs>()
+        val args by navArgs<DetailInfoFragmentArgs>()
 
-        /*val viewModel: DetailInfoViewModel by lazy {
+        val viewModel: DetailInfoViewModel by lazy {
             ViewModelProvider(this, DetailInfoViewModelFactory(requireActivity().application)).get(
                 DetailInfoViewModel::class.java
             )
-        }*/
+        }
 
-//        viewModel.showData(args.id)
+        viewModel.showData(args.id)
 
         binding.followButton.setOnClickListener {
             Log.i("z- myLocation", "abc: ${location?.latitude} - ${location?.longitude}")
