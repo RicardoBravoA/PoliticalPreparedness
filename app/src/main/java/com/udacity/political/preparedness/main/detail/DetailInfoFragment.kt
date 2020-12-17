@@ -6,11 +6,12 @@ import android.view.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.udacity.political.preparedness.common.LocationFragment
-import com.udacity.political.preparedness.databinding.FragmentVoterInfoBinding
+import com.udacity.political.preparedness.databinding.FragmentDetailInfoBinding
+import com.udacity.political.preparedness.util.visible
 
 class DetailInfoFragment : LocationFragment() {
 
-    private lateinit var binding: FragmentVoterInfoBinding
+    private lateinit var binding: FragmentDetailInfoBinding
     private val viewModel: DetailInfoViewModel by lazy {
         ViewModelProvider(this, DetailInfoViewModelFactory(requireActivity().application)).get(
             DetailInfoViewModel::class.java
@@ -26,22 +27,47 @@ class DetailInfoFragment : LocationFragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        binding = FragmentVoterInfoBinding.inflate(inflater)
+        binding = FragmentDetailInfoBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
         val args by navArgs<DetailInfoFragmentArgs>()
 
-//        viewModel.showData(args.id)
-
-
         locationViewModel.address.observe(viewLifecycleOwner, {
             Log.i("z- address", it.toString())
+            viewModel.showData(args.id, it.address)
         })
 
         binding.followButton.setOnClickListener {
             Log.i("z- myLocation", "abc: ${location?.latitude} - ${location?.longitude}")
         }
 
+        viewModel.showForm.observe(viewLifecycleOwner, {
+            binding.constraintForm.visible(it)
+            if (it) {
+                validateGPS()
+            }
+        })
+
+        viewModel.showErrorForm.observe(viewLifecycleOwner, {
+            binding.constraintError.visible(it)
+        })
+
+        binding.messageButton.setOnClickListener {
+            viewModel.validateInternet()
+        }
+
+        viewModel.data.observe(viewLifecycleOwner, {
+            binding.toolbarName.title = it.name
+            binding.electionDateTextView.text = it.electionDay.toString()
+            binding.stateHeaderTextView.visible(true)
+            binding.addressHeaderTextView.visible(true)
+            binding.votingLocationTextView.text = it.votingLocationFinderUrl
+            binding.ballotTextView.text = it.ballotInfoUrl
+            it.address?.let { address ->
+                binding.addressLineTextView.text = address
+                binding.addressLineTextView.visible(true)
+            }
+        })
 
         return binding.root
     }

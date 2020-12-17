@@ -15,7 +15,7 @@ class DetailInfoViewModelFactory(val app: Application) : ViewModelProvider.Facto
             val dataRepository = ElectionDetailDataRepository(ElectionDetailDataStoreFactory(app))
             val useCase = ElectionDetailUseCase(dataRepository)
 
-            return DetailInfoViewModel(useCase) as T
+            return DetailInfoViewModel(app.baseContext, useCase) as T
         }
         throw IllegalArgumentException("Unable to construct view model")
     }

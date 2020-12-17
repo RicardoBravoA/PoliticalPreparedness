@@ -9,9 +9,12 @@ import com.udacity.political.preparedness.domain.util.ResultType
 class ElectionDetailDataRepository(private val dataStoreFactory: ElectionDetailDataStoreFactory) :
     ElectionDetailRepository {
 
-    override suspend fun get(id: String): ResultType<ElectionDetailModel, ErrorModel> {
+    override suspend fun get(
+        id: String,
+        address: String
+    ): ResultType<ElectionDetailModel, ErrorModel> {
         val dataStore = dataStoreFactory.create()
-        return dataStore.get(id)
+        return dataStore.get(id, address)
     }
 
 }

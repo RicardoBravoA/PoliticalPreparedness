@@ -46,4 +46,9 @@
         <item name="android:padding">@dimen/default_padding</item>
     </style>
 
+    <style name="InternetMessage">
+        <item name="android:textSize">@dimen/size_24_sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
 </resources>

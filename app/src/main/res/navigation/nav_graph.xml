@@ -39,7 +39,7 @@
         android:id="@+id/VoterInfoFragment"
         android:name="com.udacity.political.preparedness.main.detail.DetailInfoFragment"
         android:label="@string/voter_info_fragment_label"
-        tools:layout="@layout/fragment_voter_info">
+        tools:layout="@layout/fragment_detail_info">
         <argument
             android:name="id"
             app:argType="string" />
