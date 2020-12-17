@@ -5,7 +5,7 @@ import com.udacity.political.preparedness.domain.model.GeocodeModel
 
 object GeocodeMapper {
 
-    private fun transformResponseToModel(geocodeResponse: GeocodeResponse): GeocodeModel {
+    fun transformResponseToModel(geocodeResponse: GeocodeResponse): GeocodeModel {
         return GeocodeModel(geocodeResponse.results.first().address)
     }
 }

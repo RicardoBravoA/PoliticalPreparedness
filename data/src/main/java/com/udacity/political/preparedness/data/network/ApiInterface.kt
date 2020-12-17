@@ -3,6 +3,7 @@ package com.udacity.political.preparedness.data.network
 import com.udacity.political.preparedness.data.BuildConfig
 import com.udacity.political.preparedness.data.response.ElectionDetailResponse
 import com.udacity.political.preparedness.data.response.ElectionResponse
+import com.udacity.political.preparedness.data.response.geocode.GeocodeResponse
 import com.udacity.political.preparedness.data.util.Constant
 import retrofit2.Response
 import retrofit2.http.GET
@@ -34,6 +35,6 @@ interface ApiInterface {
         @Query("latlng") latLng: String,
         @Query("key") key: String = BuildConfig.CIVIC_API_KEY,
         @Url url: String = Constant.GEOCODE_URL
-    ): Response<ElectionDetailResponse>
+    ): Response<GeocodeResponse>
 
 }
