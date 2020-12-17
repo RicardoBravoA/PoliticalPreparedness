@@ -6,6 +6,6 @@ import com.udacity.political.preparedness.domain.util.ResultType
 
 interface GeocodeRepository {
 
-    suspend fun get(): ResultType<GeocodeModel, ErrorModel>
+    suspend fun get(coordinates: String): ResultType<GeocodeModel, ErrorModel>
 
 }
