@@ -62,12 +62,20 @@ class ElectionsFragment : Fragment() {
 
     private fun electionClick(electionModel: ElectionModel) {
         findNavController().navigate(
-            ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(electionModel.id)
+            ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(
+                electionModel.id,
+                false
+            )
         )
     }
 
     private fun savedElectionClick(electionModel: ElectionModel) {
-        //Do nothing
+        findNavController().navigate(
+            ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(
+                electionModel.id,
+                true
+            )
+        )
     }
 
     //TODO: Refresh adapters when fragment loads

@@ -43,7 +43,6 @@ class DetailInfoViewModel(
      */
 
     init {
-        validateInternet()
     }
 
     fun validateInternet() {
