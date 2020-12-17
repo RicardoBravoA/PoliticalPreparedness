@@ -3,10 +3,21 @@ package com.udacity.political.preparedness.main.detail
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.udacity.political.preparedness.common.LocationFragment
 import com.udacity.political.preparedness.databinding.FragmentVoterInfoBinding
 
 class DetailInfoFragment : LocationFragment() {
+
+    private lateinit var binding: FragmentVoterInfoBinding
+    private val viewModel: DetailInfoViewModel by lazy {
+        ViewModelProvider(this, DetailInfoViewModelFactory(requireActivity().application)).get(
+            DetailInfoViewModel::class.java
+        )
+    }
+
+    override fun layoutParent() = binding.constraintParent
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -15,18 +26,17 @@ class DetailInfoFragment : LocationFragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        val binding = FragmentVoterInfoBinding.inflate(inflater)
+        binding = FragmentVoterInfoBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-//        val args by navArgs<DetailInfoFragmentArgs>()
-
-        /*val viewModel: DetailInfoViewModel by lazy {
-            ViewModelProvider(this, DetailInfoViewModelFactory(requireActivity().application)).get(
-                DetailInfoViewModel::class.java
-            )
-        }*/
+        val args by navArgs<DetailInfoFragmentArgs>()
 
 //        viewModel.showData(args.id)
+
+
+        locationViewModel.address.observe(viewLifecycleOwner, {
+            Log.i("z- address", it.toString())
+        })
 
         binding.followButton.setOnClickListener {
             Log.i("z- myLocation", "abc: ${location?.latitude} - ${location?.longitude}")

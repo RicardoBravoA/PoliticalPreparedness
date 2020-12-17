@@ -1,6 +1,7 @@
-package com.udacity.political.preparedness.data.datastore
+package com.udacity.political.preparedness.data.datastore.factory
 
 import android.content.Context
+import com.udacity.political.preparedness.data.datastore.ElectionDataStore
 import com.udacity.political.preparedness.data.service.ElectionServiceDataStore
 import com.udacity.political.preparedness.data.storage.ElectionStorageDataStore
 import com.udacity.political.preparedness.data.storage.database.ElectionDatabase

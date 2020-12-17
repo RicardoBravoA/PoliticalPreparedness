@@ -3,8 +3,8 @@ package com.udacity.political.preparedness.main.election
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.udacity.political.preparedness.data.datastore.ElectionDataStoreFactory
-import com.udacity.political.preparedness.data.datastore.SavedElectionDataStoreFactory
+import com.udacity.political.preparedness.data.datastore.factory.ElectionDataStoreFactory
+import com.udacity.political.preparedness.data.datastore.factory.SavedElectionDataStoreFactory
 import com.udacity.political.preparedness.data.repository.ElectionDataRepository
 import com.udacity.political.preparedness.data.repository.SavedElectionDataRepository
 import com.udacity.political.preparedness.domain.usecase.ElectionUseCase
