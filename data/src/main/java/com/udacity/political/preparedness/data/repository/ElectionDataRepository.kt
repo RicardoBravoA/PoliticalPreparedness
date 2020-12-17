@@ -1,6 +1,6 @@
 package com.udacity.political.preparedness.data.repository
 
-import com.udacity.political.preparedness.data.datastore.ElectionDataStoreFactory
+import com.udacity.political.preparedness.data.datastore.factory.ElectionDataStoreFactory
 import com.udacity.political.preparedness.domain.model.ElectionModel
 import com.udacity.political.preparedness.domain.model.ErrorModel
 import com.udacity.political.preparedness.domain.repository.ElectionRepository
