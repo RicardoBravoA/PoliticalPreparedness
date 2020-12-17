@@ -22,12 +22,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimaryVariant"
-                app:titleTextColor="@color/white"
                 android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:popupTheme="@style/Theme.PoliticalPreparedness.PopupOverlay" />
+                app:popupTheme="@style/Theme.PoliticalPreparedness.PopupOverlay"
+                app:titleTextColor="@color/white" />
 
             <TextView
                 android:id="@+id/election_date_text_view"
@@ -55,6 +55,7 @@
                 style="@style/ElectionDetailItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/state_header_text_view" />
@@ -64,6 +65,7 @@
                 style="@style/ElectionDetailItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/voting_location_text_view" />

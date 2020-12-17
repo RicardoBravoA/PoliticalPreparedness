@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.udacity.political.preparedness.R
 import com.udacity.political.preparedness.common.LocationFragment
 import com.udacity.political.preparedness.databinding.FragmentDetailInfoBinding
+import com.udacity.political.preparedness.util.hyperlink
 import com.udacity.political.preparedness.util.visible
 
 class DetailInfoFragment : LocationFragment() {
@@ -61,8 +63,23 @@ class DetailInfoFragment : LocationFragment() {
             binding.electionDateTextView.text = it.electionDay.toString()
             binding.stateHeaderTextView.visible(true)
             binding.addressHeaderTextView.visible(true)
-            binding.votingLocationTextView.text = it.votingLocationFinderUrl
-            binding.ballotTextView.text = it.ballotInfoUrl
+
+            it.votingLocationFinderUrl?.let { url ->
+                binding.votingLocationTextView.hyperlink(
+                    getString(R.string.voting_locations),
+                    url
+                )
+                binding.votingLocationTextView.visible(true)
+            }
+
+            it.ballotInfoUrl?.let { url ->
+                binding.ballotTextView.hyperlink(
+                    getString(R.string.ballot_information),
+                    url
+                )
+                binding.ballotTextView.visible(true)
+            }
+
             it.address?.let { address ->
                 binding.addressLineTextView.text = address
                 binding.addressLineTextView.visible(true)
