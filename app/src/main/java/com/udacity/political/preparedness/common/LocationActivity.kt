@@ -16,9 +16,14 @@ abstract class LocationActivity : AppCompatActivity(), LocationListener {
 
     private lateinit var locationManager: LocationManager
     private var updateLocation: UpdateLocation? = null
+    private var gpsStatus: GPSStatus? = null
 
     fun setOnUpdateLocation(updateLocation: UpdateLocation) {
         this.updateLocation = updateLocation
+    }
+
+    fun setOnGPSStatus(gpsStatus: GPSStatus) {
+        this.gpsStatus = gpsStatus
     }
 
     fun permissionGPS() {
@@ -67,6 +72,7 @@ abstract class LocationActivity : AppCompatActivity(), LocationListener {
     private fun activateGPS() {
         GpsUtil(this).turnOnGPS(object : GpsUtil.GpsListener {
             override fun onGpsStatus(isGPSEnable: Boolean) {
+                gpsStatus?.onGPSStatus(isGPSEnable)
                 getLocation()
             }
         })
@@ -109,6 +115,10 @@ abstract class LocationActivity : AppCompatActivity(), LocationListener {
 
     interface UpdateLocation {
         fun onUpdateLocation(location: Location)
+    }
+
+    interface GPSStatus {
+        fun onGPSStatus(status: Boolean)
     }
 
 }
