@@ -10,6 +10,15 @@ import com.udacity.political.preparedness.databinding.FragmentVoterInfoBinding
 
 class DetailInfoFragment : LocationFragment() {
 
+    private lateinit var binding: FragmentVoterInfoBinding
+    private val viewModel: DetailInfoViewModel by lazy {
+        ViewModelProvider(this, DetailInfoViewModelFactory(requireActivity().application)).get(
+            DetailInfoViewModel::class.java
+        )
+    }
+
+    override fun layoutParent() = binding.constraintParent
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -17,18 +26,17 @@ class DetailInfoFragment : LocationFragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        val binding = FragmentVoterInfoBinding.inflate(inflater)
+        binding = FragmentVoterInfoBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
         val args by navArgs<DetailInfoFragmentArgs>()
 
-        val viewModel: DetailInfoViewModel by lazy {
-            ViewModelProvider(this, DetailInfoViewModelFactory(requireActivity().application)).get(
-                DetailInfoViewModel::class.java
-            )
-        }
-
 //        viewModel.showData(args.id)
+
+
+        locationViewModel.address.observe(viewLifecycleOwner, {
+            Log.i("z- address", it.toString())
+        })
 
         binding.followButton.setOnClickListener {
             Log.i("z- myLocation", "abc: ${location?.latitude} - ${location?.longitude}")

@@ -32,9 +32,9 @@ interface ApiInterface {
 
     @GET
     suspend fun geocode(
+        @Url url: String = Constant.GEOCODE_URL,
         @Query("latlng") latLng: String,
         @Query("key") key: String = BuildConfig.CIVIC_API_KEY,
-        @Url url: String = Constant.GEOCODE_URL
     ): Response<GeocodeResponse>
 
 }

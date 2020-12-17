@@ -12,7 +12,7 @@ import com.udacity.political.preparedness.domain.util.ResultType
 class GeocodeServiceDataStore() : GeocodeDataStore {
 
     override suspend fun get(coordinates: String): ResultType<GeocodeModel, ErrorModel> {
-        val response = ApiManager.get().geocode(coordinates)
+        val response = ApiManager.get().geocode(latLng = coordinates)
         return if (response.isSuccessful) {
             val response = response.body()
             ResultType.Success(GeocodeMapper.transformResponseToModel(response!!))
