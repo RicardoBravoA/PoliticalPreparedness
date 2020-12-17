@@ -7,12 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 
 open class LocationFragment : Fragment(), LocationActivity.UpdateLocation,
     LocationActivity.GPSStatus {
 
     internal var location: Location? = null
-    internal var gpsStatus: Boolean = false
+    private val viewModel: LocationViewModel by lazy {
+        ViewModelProvider(this, LocationViewModelFactory()).get(
+            LocationViewModel::class.java
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,10 +27,16 @@ open class LocationFragment : Fragment(), LocationActivity.UpdateLocation,
         val view = super.onCreateView(inflater, container, savedInstanceState)
 
         (requireActivity() as LocationActivity).setOnUpdateLocation(this)
+        (requireActivity() as LocationActivity).setOnGPSStatus(this)
         (requireActivity() as LocationActivity).permissionGPS()
 
-
-
+        viewModel.gpsStatus.observe(viewLifecycleOwner, {
+            if (it) {
+                Log.i("z- gps", "encendido")
+            } else {
+                Log.i("z- gps", "apagado")
+            }
+        })
         return view
     }
 
@@ -35,7 +46,8 @@ open class LocationFragment : Fragment(), LocationActivity.UpdateLocation,
     }
 
     override fun onGPSStatus(status: Boolean) {
-        this.gpsStatus = status
+        Log.i("z- onGPSStatus", status.toString())
+        viewModel.addGPSStatus(status)
     }
 
 }

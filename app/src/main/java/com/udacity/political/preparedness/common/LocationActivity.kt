@@ -40,12 +40,12 @@ abstract class LocationActivity : AppCompatActivity(), LocationListener {
             ) {
                 ActivityCompat.requestPermissions(
                     this,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), Constant.REQUEST_CODE
                 )
             } else {
                 ActivityCompat.requestPermissions(
                     this,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), Constant.REQUEST_CODE
                 )
             }
         } else {
@@ -80,36 +80,44 @@ abstract class LocationActivity : AppCompatActivity(), LocationListener {
 
     override fun onLocationChanged(location: Location) {
         updateLocation?.onUpdateLocation(location)
+        gpsStatus()
     }
 
     override fun onProviderEnabled(provider: String) {
-        //Do nothing
+        if (provider == LocationManager.GPS_PROVIDER) {
+            gpsStatus()
+            getLocation()
+        }
     }
 
     override fun onProviderDisabled(provider: String) {
-        //Do nothing
+        if (provider == LocationManager.GPS_PROVIDER) {
+            gpsStatus()
+        }
+    }
+
+    private fun gpsStatus() {
+        gpsStatus?.onGPSStatus(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
     }
 
     override fun onRequestPermissionsResult(
         requestCode: Int, permissions: Array<String>,
         grantResults: IntArray
     ) {
-        when (requestCode) {
-            1 -> {
-                if (grantResults.isNotEmpty() && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED
+        if (requestCode == Constant.REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] ==
+                PackageManager.PERMISSION_GRANTED
+            ) {
+                if ((ContextCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) ==
+                            PackageManager.PERMISSION_GRANTED)
                 ) {
-                    if ((ContextCompat.checkSelfPermission(
-                            this,
-                            Manifest.permission.ACCESS_FINE_LOCATION
-                        ) ==
-                                PackageManager.PERMISSION_GRANTED)
-                    ) {
-                        activateGPS()
-                    }
+                    activateGPS()
                 }
-                return
             }
+            return
         }
     }
 

@@ -28,7 +28,7 @@ class DetailInfoFragment : LocationFragment() {
             )
         }
 
-        viewModel.showData(args.id)
+//        viewModel.showData(args.id)
 
         binding.followButton.setOnClickListener {
             Log.i("z- myLocation", "abc: ${location?.latitude} - ${location?.longitude}")
