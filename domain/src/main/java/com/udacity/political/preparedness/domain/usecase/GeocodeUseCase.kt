@@ -8,7 +8,8 @@ import com.udacity.political.preparedness.domain.util.ResultType
 class GeocodeUseCase(private val geocodeRepository: GeocodeRepository) {
 
     suspend fun get(coordinates: String): ResultType<GeocodeModel, ErrorModel> {
-        return geocodeRepository.get(coordinates)
+        return ResultType.Success(GeocodeModel("1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA"))
+//        return geocodeRepository.get(coordinates)
     }
 
 }
