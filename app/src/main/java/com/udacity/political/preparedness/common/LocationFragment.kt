@@ -30,10 +30,6 @@ abstract class LocationFragment : Fragment(), LocationActivity.UpdateLocation,
     ): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
 
-        (requireActivity() as LocationActivity).setOnUpdateLocation(this)
-        (requireActivity() as LocationActivity).setOnGPSStatus(this)
-        (requireActivity() as LocationActivity).permissionGPS()
-
         locationViewModel.gpsStatus.observe(viewLifecycleOwner, { status ->
             if (status) {
                 location?.let {
@@ -46,6 +42,12 @@ abstract class LocationFragment : Fragment(), LocationActivity.UpdateLocation,
         })
 
         return view
+    }
+
+    fun validateGPS() {
+        (requireActivity() as LocationActivity).setOnUpdateLocation(this)
+        (requireActivity() as LocationActivity).setOnGPSStatus(this)
+        (requireActivity() as LocationActivity).permissionGPS()
     }
 
     override fun onUpdateLocation(location: Location) {
