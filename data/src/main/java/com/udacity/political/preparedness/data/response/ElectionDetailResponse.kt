@@ -6,5 +6,5 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class ElectionDetailResponse(
     val election: ElectionItemResponse,
-    val state: StateResponse
+    val state: List<StateResponse>
 ) : Parcelable

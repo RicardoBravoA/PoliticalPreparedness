@@ -36,6 +36,7 @@ class DetailInfoFragment : LocationFragment() {
 
         locationViewModel.address.observe(viewLifecycleOwner, {
             Log.i("z- address", it.toString())
+            viewModel.showData(args.id, it.address)
         })
 
         binding.followButton.setOnClickListener {

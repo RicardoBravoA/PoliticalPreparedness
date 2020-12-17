@@ -8,7 +8,7 @@ object ElectionDetailMapper {
 
     fun transformResponseToEntity(electionDetailResponse: ElectionDetailResponse): ElectionDetailEntity {
         val election = electionDetailResponse.election
-        val administration = electionDetailResponse.state.electionAdministrationBody
+        val administration = electionDetailResponse.state.first().electionAdministrationBody
         return ElectionDetailEntity(
             election.id,
             election.name,
@@ -36,7 +36,7 @@ object ElectionDetailMapper {
 
     fun transformResponseToModel(electionDetailResponse: ElectionDetailResponse): ElectionDetailModel {
         val election = electionDetailResponse.election
-        val administration = electionDetailResponse.state.electionAdministrationBody
+        val administration = electionDetailResponse.state.first().electionAdministrationBody
         return ElectionDetailModel(
             election.id,
             election.name,
