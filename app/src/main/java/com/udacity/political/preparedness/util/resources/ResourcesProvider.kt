@@ -7,5 +7,5 @@ open class ResourcesProvider(private val context: Context) : ResourcesInterface 
 
     override fun followElectionText() = context.getString(R.string.follow_election)
 
-    override fun deleteElectionText() = context.getString(R.string.delete_election)
+    override fun unfollowElectionText() = context.getString(R.string.unfollow_election)
 }

@@ -48,7 +48,7 @@ class DetailInfoViewModel(
         electionId.value = id
 
         if (fromSavedValue) {
-            _buttonText.value = resourcesProvider.deleteElectionText()
+            _buttonText.value = resourcesProvider.unfollowElectionText()
             showOfflineData(id)
         } else {
             _buttonText.value = resourcesProvider.followElectionText()
