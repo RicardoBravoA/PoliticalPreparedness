@@ -10,12 +10,14 @@ import com.udacity.political.preparedness.domain.model.ElectionDetailModel
 import com.udacity.political.preparedness.domain.usecase.ElectionDetailUseCase
 import com.udacity.political.preparedness.domain.usecase.SavedElectionDetailUseCase
 import com.udacity.political.preparedness.domain.util.ResultType
+import com.udacity.political.preparedness.util.resources.ResourcesProvider
 import kotlinx.coroutines.launch
 
 class DetailInfoViewModel(
     private val context: Context,
     private val electionDetailUseCase: ElectionDetailUseCase,
-    private val savedElectionDetailUseCase: SavedElectionDetailUseCase
+    private val savedElectionDetailUseCase: SavedElectionDetailUseCase,
+    private val resourcesProvider: ResourcesProvider
 ) : ViewModel() {
 
     private val _data = MutableLiveData<ElectionDetailModel>()
@@ -30,12 +32,25 @@ class DetailInfoViewModel(
     val showErrorForm: LiveData<Boolean>
         get() = _showErrorForm
 
-    private val _fromSaved = MutableLiveData<Boolean>()
-    val fromSaved: LiveData<Boolean>
-        get() = _fromSaved
+    private val fromSaved = MutableLiveData<Boolean>()
+    private val electionId = MutableLiveData<String>()
 
-    fun fromSaved(value: Boolean) {
-        _fromSaved.value = value
+    private val _buttonText = MutableLiveData<String>()
+    val buttonText: LiveData<String>
+        get() = _buttonText
+
+    fun init(id: String, fromSavedValue: Boolean) {
+        fromSaved.value = fromSavedValue
+        electionId.value = id
+
+        if (fromSavedValue) {
+            _buttonText.value = resourcesProvider.deleteElectionText()
+            showOfflineData(id)
+        } else {
+            _buttonText.value = resourcesProvider.followElectionText()
+            validateInternet()
+        }
+
     }
 
     fun validateInternet() {
