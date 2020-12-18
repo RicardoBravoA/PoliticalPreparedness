@@ -67,4 +67,35 @@ class DetailInfoViewModel(
             }
         }
     }
+
+    fun showOfflineData(id: String) {
+        viewModelScope.launch {
+            when (val result = savedElectionDetailUseCase.get(id)) {
+                is ResultType.Success -> {
+                    Log.i("z- data", result.value.toString())
+                    _data.value = result.value
+                }
+                is ResultType.Error -> {
+                    Log.i("z- error", result.value.toString())
+                }
+            }
+        }
+    }
+
+    fun saveElection() {
+        viewModelScope.launch {
+            data.value?.let {
+                savedElectionDetailUseCase.save(it)
+            }
+        }
+    }
+
+    fun deleteElection() {
+        viewModelScope.launch {
+            data.value?.let {
+                savedElectionDetailUseCase.delete(it.id)
+            }
+        }
+    }
+
 }

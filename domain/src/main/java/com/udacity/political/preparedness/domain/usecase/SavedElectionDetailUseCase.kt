@@ -7,8 +7,8 @@ import com.udacity.political.preparedness.domain.util.ResultType
 
 class SavedElectionDetailUseCase(private val savedElectionDetailRepository: SavedElectionDetailRepository) {
 
-    suspend fun get(id: String, address: String): ResultType<ElectionDetailModel, ErrorModel> {
-        return savedElectionDetailRepository.get(id, address)
+    suspend fun get(id: String): ResultType<ElectionDetailModel, ErrorModel> {
+        return savedElectionDetailRepository.get(id)
     }
 
     suspend fun getAll(): ResultType<List<ElectionDetailModel>, ErrorModel> {
@@ -17,6 +17,10 @@ class SavedElectionDetailUseCase(private val savedElectionDetailRepository: Save
 
     suspend fun save(electionDetailModel: ElectionDetailModel) {
         return savedElectionDetailRepository.save(electionDetailModel)
+    }
+
+    suspend fun delete(id: String) {
+        return savedElectionDetailRepository.delete(id)
     }
 
 }
