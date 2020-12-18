@@ -78,6 +78,7 @@ class DetailInfoFragment : LocationFragment() {
             binding.electionDateTextView.text = it.electionDay.toString()
             binding.stateHeaderTextView.visible(true)
             binding.addressHeaderTextView.visible(true)
+            binding.actionButton.visible(true)
 
             it.votingLocationFinderUrl?.let { url ->
                 binding.votingLocationTextView.hyperlink(
