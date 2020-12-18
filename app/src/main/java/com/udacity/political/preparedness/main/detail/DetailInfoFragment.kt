@@ -35,7 +35,10 @@ class DetailInfoFragment : LocationFragment() {
         val args by navArgs<DetailInfoFragmentArgs>()
 
         if (!args.fromSaved) {
+            binding.actionButton.text = getString(R.string.follow_election)
             viewModel.validateInternet()
+        } else {
+            binding.actionButton.text = getString(R.string.delete_election)
         }
 
         locationViewModel.address.observe(viewLifecycleOwner, {
@@ -43,8 +46,8 @@ class DetailInfoFragment : LocationFragment() {
             viewModel.showData(args.id, it.address)
         })
 
-        binding.followButton.setOnClickListener {
-            Log.i("z- myLocation", "abc: ${location?.latitude} - ${location?.longitude}")
+        binding.actionButton.setOnClickListener {
+
         }
 
         viewModel.showForm.observe(viewLifecycleOwner, {

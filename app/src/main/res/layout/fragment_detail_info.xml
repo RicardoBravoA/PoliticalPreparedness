@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
                 android:text="@string/address_information"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ballot_text_view" />
@@ -92,7 +92,7 @@
                 app:layout_constraintTop_toBottomOf="@id/address_header_text_view" />
 
             <Button
-                android:id="@+id/follow_button"
+                android:id="@+id/action_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_padding"
