@@ -12,11 +12,10 @@ class SavedElectionDetailDataRepository(private val context: Context) :
     SavedElectionDetailRepository {
 
     override suspend fun get(
-        id: String,
-        address: String
+        id: String
     ): ResultType<ElectionDetailModel, ErrorModel> {
         val database = ElectionDatabase.getInstance(context)
-        return SavedElectionDetailStorageDataStore(database.savedElectionDetailDao).get(id, address)
+        return SavedElectionDetailStorageDataStore(database.savedElectionDetailDao).get(id)
     }
 
     override suspend fun save(electionDetailModel: ElectionDetailModel) {
