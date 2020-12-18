@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.udacity.political.preparedness.data.repository.ElectionDetailDataRepository
 import com.udacity.political.preparedness.data.repository.SavedElectionDetailDataRepository
-import com.udacity.political.preparedness.data.storage.database.ElectionDatabase
 import com.udacity.political.preparedness.domain.usecase.ElectionDetailUseCase
 import com.udacity.political.preparedness.domain.usecase.SavedElectionDetailUseCase
 

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.udacity.political.preparedness.domain.model.ElectionDetailModel
 import com.udacity.political.preparedness.domain.model.ElectionModel
 import com.udacity.political.preparedness.domain.usecase.ElectionUseCase
 import com.udacity.political.preparedness.domain.usecase.SavedElectionDetailUseCase
@@ -29,8 +30,8 @@ class ElectionsViewModel(
     val electionList: LiveData<List<ElectionModel>>
         get() = _electionList
 
-    private val _savedElectionList = MutableLiveData<List<ElectionModel>>()
-    val savedElectionList: LiveData<List<ElectionModel>>
+    private val _savedElectionList = MutableLiveData<List<ElectionDetailModel>>()
+    val savedElectionList: LiveData<List<ElectionDetailModel>>
         get() = _savedElectionList
 
 
@@ -48,9 +49,9 @@ class ElectionsViewModel(
         }
     }
 
-    /*fun showSavedElections() {
+    fun showSavedElections() {
         viewModelScope.launch {
-            when (val result = savedElectionUseCase.get()) {
+            when (val result = savedElectionDetailUseCase.getAll()) {
                 is ResultType.Success -> {
                     Log.i("z- data", result.value.toString())
                     _savedElectionList.value = result.value
@@ -60,6 +61,6 @@ class ElectionsViewModel(
                 }
             }
         }
-    }*/
+    }
 
 }
