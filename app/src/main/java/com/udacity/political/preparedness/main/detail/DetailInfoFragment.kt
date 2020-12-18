@@ -1,7 +1,6 @@
 package com.udacity.political.preparedness.main.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -42,18 +41,11 @@ class DetailInfoFragment : LocationFragment() {
         })
 
         locationViewModel.address.observe(viewLifecycleOwner, {
-            Log.i("z- address", it.toString())
             viewModel.showData(args.id, it.address)
         })
 
         binding.actionButton.setOnClickListener {
-            if (!args.fromSaved) {
-                viewModel.saveElection()
-                findNavController().popBackStack()
-            } else {
-                viewModel.deleteElection()
-                findNavController().popBackStack()
-            }
+            viewModel.actionButton()
 
         }
 
@@ -71,6 +63,12 @@ class DetailInfoFragment : LocationFragment() {
         binding.messageButton.setOnClickListener {
             viewModel.validateInternet()
         }
+
+        viewModel.navigate.observe(viewLifecycleOwner, {
+            if (it) {
+                findNavController().popBackStack()
+            }
+        })
 
         viewModel.data.observe(viewLifecycleOwner, {
             binding.toolbarName.title = it.name

@@ -39,6 +39,10 @@ class DetailInfoViewModel(
     val buttonText: LiveData<String>
         get() = _buttonText
 
+    private val _navigate = MutableLiveData<Boolean>()
+    val navigate: LiveData<Boolean>
+        get() = _navigate
+
     fun init(id: String, fromSavedValue: Boolean) {
         fromSaved.value = fromSavedValue
         electionId.value = id
@@ -50,7 +54,6 @@ class DetailInfoViewModel(
             _buttonText.value = resourcesProvider.followElectionText()
             validateInternet()
         }
-
     }
 
     fun validateInternet() {
@@ -73,7 +76,17 @@ class DetailInfoViewModel(
         }
     }
 
-    fun showOfflineData(id: String) {
+    fun actionButton() {
+        fromSaved.value?.let {
+            if (it) {
+                deleteElection()
+            } else {
+                saveElection()
+            }
+        }
+    }
+
+    private fun showOfflineData(id: String) {
         viewModelScope.launch {
             when (val result = savedElectionDetailUseCase.get(id)) {
                 is ResultType.Success -> {
@@ -86,18 +99,20 @@ class DetailInfoViewModel(
         }
     }
 
-    fun saveElection() {
+    private fun saveElection() {
         viewModelScope.launch {
             data.value?.let {
                 savedElectionDetailUseCase.save(it)
+                _navigate.value = true
             }
         }
     }
 
-    fun deleteElection() {
+    private fun deleteElection() {
         viewModelScope.launch {
             data.value?.let {
                 savedElectionDetailUseCase.delete(it.id)
+                _navigate.value = true
             }
         }
     }
