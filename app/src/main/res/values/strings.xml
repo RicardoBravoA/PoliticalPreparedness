@@ -14,7 +14,7 @@
     <string name="election_information">Election Information</string>
     <string name="address_information">Address Information</string>
     <string name="follow_election">Follow Election</string>
-    <string name="delete_election">Delete Election</string>
+    <string name="unfollow_election">Unfollow Election</string>
     <string name="ok">OK</string>
     <string name="internet_message">To view this screen you must have internet access</string>
     <string name="gps_message">GPS is needed to be turned on, to get the picks political elections to you</string>

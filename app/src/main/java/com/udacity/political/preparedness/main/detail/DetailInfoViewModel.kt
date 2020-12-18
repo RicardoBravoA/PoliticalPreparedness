@@ -1,7 +1,6 @@
 package com.udacity.political.preparedness.main.detail
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,15 +10,15 @@ import com.udacity.political.preparedness.domain.model.ElectionDetailModel
 import com.udacity.political.preparedness.domain.usecase.ElectionDetailUseCase
 import com.udacity.political.preparedness.domain.usecase.SavedElectionDetailUseCase
 import com.udacity.political.preparedness.domain.util.ResultType
+import com.udacity.political.preparedness.util.resources.ResourcesProvider
 import kotlinx.coroutines.launch
 
 class DetailInfoViewModel(
     private val context: Context,
     private val electionDetailUseCase: ElectionDetailUseCase,
-    private val savedElectionDetailUseCase: SavedElectionDetailUseCase
+    private val savedElectionDetailUseCase: SavedElectionDetailUseCase,
+    private val resourcesProvider: ResourcesProvider
 ) : ViewModel() {
-
-    //TODO: Add live data to hold voter info
 
     private val _data = MutableLiveData<ElectionDetailModel>()
     val data: LiveData<ElectionDetailModel>
@@ -33,18 +32,28 @@ class DetailInfoViewModel(
     val showErrorForm: LiveData<Boolean>
         get() = _showErrorForm
 
-    //TODO: Add var and methods to populate voter info
+    private val fromSaved = MutableLiveData<Boolean>()
+    private val electionId = MutableLiveData<String>()
 
-    //TODO: Add var and methods to support loading URLs
+    private val _buttonText = MutableLiveData<String>()
+    val buttonText: LiveData<String>
+        get() = _buttonText
 
-    //TODO: Add var and methods to save and remove elections to local database
-    //TODO: cont'd -- Populate initial state of save button to reflect proper action based on election saved status
+    private val _navigate = MutableLiveData<Boolean>()
+    val navigate: LiveData<Boolean>
+        get() = _navigate
 
-    /**
-     * Hint: The saved state can be accomplished in multiple ways. It is directly related to how elections are saved/removed from the database.
-     */
+    fun init(id: String, fromSavedValue: Boolean) {
+        fromSaved.value = fromSavedValue
+        electionId.value = id
 
-    init {
+        if (fromSavedValue) {
+            _buttonText.value = resourcesProvider.unfollowElectionText()
+            showOfflineData(id)
+        } else {
+            _buttonText.value = resourcesProvider.followElectionText()
+            validateInternet()
+        }
     }
 
     fun validateInternet() {
@@ -58,42 +67,52 @@ class DetailInfoViewModel(
         viewModelScope.launch {
             when (val result = electionDetailUseCase.get(id, address)) {
                 is ResultType.Success -> {
-                    Log.i("z- data", result.value.toString())
                     _data.value = result.value
                 }
                 is ResultType.Error -> {
-                    Log.i("z- error", result.value.toString())
+                    //Do nothing
                 }
             }
         }
     }
 
-    fun showOfflineData(id: String) {
+    fun actionButton() {
+        fromSaved.value?.let {
+            if (it) {
+                deleteElection()
+            } else {
+                saveElection()
+            }
+        }
+    }
+
+    private fun showOfflineData(id: String) {
         viewModelScope.launch {
             when (val result = savedElectionDetailUseCase.get(id)) {
                 is ResultType.Success -> {
-                    Log.i("z- data", result.value.toString())
                     _data.value = result.value
                 }
                 is ResultType.Error -> {
-                    Log.i("z- error", result.value.toString())
+                    //Do nothing
                 }
             }
         }
     }
 
-    fun saveElection() {
+    private fun saveElection() {
         viewModelScope.launch {
             data.value?.let {
                 savedElectionDetailUseCase.save(it)
+                _navigate.value = true
             }
         }
     }
 
-    fun deleteElection() {
+    private fun deleteElection() {
         viewModelScope.launch {
             data.value?.let {
                 savedElectionDetailUseCase.delete(it.id)
+                _navigate.value = true
             }
         }
     }

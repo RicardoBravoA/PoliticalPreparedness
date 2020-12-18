@@ -7,6 +7,7 @@ import com.udacity.political.preparedness.data.repository.ElectionDetailDataRepo
 import com.udacity.political.preparedness.data.repository.SavedElectionDetailDataRepository
 import com.udacity.political.preparedness.domain.usecase.ElectionDetailUseCase
 import com.udacity.political.preparedness.domain.usecase.SavedElectionDetailUseCase
+import com.udacity.political.preparedness.util.resources.ResourcesProvider
 
 @Suppress("UNCHECKED_CAST")
 class DetailInfoViewModelFactory(val app: Application) : ViewModelProvider.Factory {
@@ -21,10 +22,13 @@ class DetailInfoViewModelFactory(val app: Application) : ViewModelProvider.Facto
             val savedElectionDetailUseCase =
                 SavedElectionDetailUseCase(savedElectionDetailDataRepository)
 
+            val resources = ResourcesProvider(app.baseContext)
+
             return DetailInfoViewModel(
                 app.baseContext,
                 electionDetailUseCase,
-                savedElectionDetailUseCase
+                savedElectionDetailUseCase,
+                resources
             ) as T
         }
         throw IllegalArgumentException("Unable to construct view model")
