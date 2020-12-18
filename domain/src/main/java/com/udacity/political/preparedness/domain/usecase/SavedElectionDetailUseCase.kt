@@ -19,4 +19,8 @@ class SavedElectionDetailUseCase(private val savedElectionDetailRepository: Save
         return savedElectionDetailRepository.save(electionDetailModel)
     }
 
+    suspend fun delete(id: String) {
+        return savedElectionDetailRepository.delete(id)
+    }
+
 }
