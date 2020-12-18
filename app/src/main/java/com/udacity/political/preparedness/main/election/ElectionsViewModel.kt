@@ -7,14 +7,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.udacity.political.preparedness.domain.model.ElectionModel
 import com.udacity.political.preparedness.domain.usecase.ElectionUseCase
-import com.udacity.political.preparedness.domain.usecase.SavedElectionUseCase
+import com.udacity.political.preparedness.domain.usecase.SavedElectionDetailUseCase
 import com.udacity.political.preparedness.domain.util.ResultType
 import kotlinx.coroutines.launch
 
 //TODO: Construct ViewModel and provide election datasource
 class ElectionsViewModel(
     private val electionUseCase: ElectionUseCase,
-    private val savedElectionUseCase: SavedElectionUseCase
+    private val savedElectionDetailUseCase: SavedElectionDetailUseCase
 ) : ViewModel() {
 
     //TODO: Create live data val for upcoming elections
@@ -48,7 +48,7 @@ class ElectionsViewModel(
         }
     }
 
-    fun showSavedElections() {
+    /*fun showSavedElections() {
         viewModelScope.launch {
             when (val result = savedElectionUseCase.get()) {
                 is ResultType.Success -> {
@@ -60,6 +60,6 @@ class ElectionsViewModel(
                 }
             }
         }
-    }
+    }*/
 
 }

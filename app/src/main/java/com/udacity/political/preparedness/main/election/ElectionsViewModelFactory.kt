@@ -4,11 +4,10 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.udacity.political.preparedness.data.datastore.factory.ElectionDataStoreFactory
-import com.udacity.political.preparedness.data.datastore.factory.SavedElectionDataStoreFactory
 import com.udacity.political.preparedness.data.repository.ElectionDataRepository
-import com.udacity.political.preparedness.data.repository.SavedElectionDataRepository
+import com.udacity.political.preparedness.data.repository.SavedElectionDetailDataRepository
 import com.udacity.political.preparedness.domain.usecase.ElectionUseCase
-import com.udacity.political.preparedness.domain.usecase.SavedElectionUseCase
+import com.udacity.political.preparedness.domain.usecase.SavedElectionDetailUseCase
 
 @Suppress("UNCHECKED_CAST")
 class ElectionsViewModelFactory(val app: Application) : ViewModelProvider.Factory {
@@ -18,11 +17,12 @@ class ElectionsViewModelFactory(val app: Application) : ViewModelProvider.Factor
             val electionDataRepository = ElectionDataRepository(ElectionDataStoreFactory(app))
             val electionUseCase = ElectionUseCase(electionDataRepository)
 
-            val savedElectionDataRepository =
-                SavedElectionDataRepository(SavedElectionDataStoreFactory(app))
-            val savedElectionUseCase = SavedElectionUseCase(savedElectionDataRepository)
+            val savedElectionDetailDataRepository =
+                SavedElectionDetailDataRepository(app.baseContext)
+            val savedElectionDetailUseCase =
+                SavedElectionDetailUseCase(savedElectionDetailDataRepository)
 
-            return ElectionsViewModel(electionUseCase, savedElectionUseCase) as T
+            return ElectionsViewModel(electionUseCase, savedElectionDetailUseCase) as T
         }
         throw IllegalArgumentException("Unable to construct view model")
     }

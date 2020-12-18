@@ -54,7 +54,7 @@ class ElectionsFragment : Fragment() {
         })
 
         viewModel.showData()
-        viewModel.showSavedElections()
+//        viewModel.showSavedElections()
 
         return binding.root
 

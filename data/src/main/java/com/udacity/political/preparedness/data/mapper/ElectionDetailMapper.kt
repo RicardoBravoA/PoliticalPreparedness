@@ -2,15 +2,15 @@ package com.udacity.political.preparedness.data.mapper
 
 import com.udacity.political.preparedness.data.response.detail.ElectionDetailResponse
 import com.udacity.political.preparedness.data.response.detail.NormalizedInputResponse
-import com.udacity.political.preparedness.data.storage.entity.ElectionDetailEntity
+import com.udacity.political.preparedness.data.storage.entity.SavedElectionDetailEntity
 import com.udacity.political.preparedness.domain.model.ElectionDetailModel
 
 object ElectionDetailMapper {
 
-    fun transformResponseToEntity(electionDetailResponse: ElectionDetailResponse): ElectionDetailEntity {
+    fun transformResponseToEntity(electionDetailResponse: ElectionDetailResponse): SavedElectionDetailEntity {
         val election = electionDetailResponse.election
         val administration = electionDetailResponse.state.first().electionAdministrationBody
-        return ElectionDetailEntity(
+        return SavedElectionDetailEntity(
             election.id,
             election.name,
             election.electionDay,
@@ -22,8 +22,8 @@ object ElectionDetailMapper {
         )
     }
 
-    fun transformEntityToModel(electionDetailEntity: ElectionDetailEntity): ElectionDetailModel {
-        electionDetailEntity.apply {
+    fun transformEntityToModel(savedElectionDetailEntity: SavedElectionDetailEntity): ElectionDetailModel {
+        savedElectionDetailEntity.apply {
             return ElectionDetailModel(
                 id,
                 name,
@@ -37,9 +37,9 @@ object ElectionDetailMapper {
         }
     }
 
-    fun transformModelToEntity(electionDetailModel: ElectionDetailModel): ElectionDetailEntity {
+    fun transformModelToEntity(electionDetailModel: ElectionDetailModel): SavedElectionDetailEntity {
         electionDetailModel.apply {
-            return ElectionDetailEntity(
+            return SavedElectionDetailEntity(
                 id,
                 name,
                 electionDay,

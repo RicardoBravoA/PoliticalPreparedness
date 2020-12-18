@@ -9,12 +9,14 @@ import androidx.lifecycle.viewModelScope
 import com.udacity.political.preparedness.data.util.isInternet
 import com.udacity.political.preparedness.domain.model.ElectionDetailModel
 import com.udacity.political.preparedness.domain.usecase.ElectionDetailUseCase
+import com.udacity.political.preparedness.domain.usecase.SavedElectionDetailUseCase
 import com.udacity.political.preparedness.domain.util.ResultType
 import kotlinx.coroutines.launch
 
 class DetailInfoViewModel(
     private val context: Context,
-    private val electionDetailUseCase: ElectionDetailUseCase
+    private val electionDetailUseCase: ElectionDetailUseCase,
+    private val savedElectionDetailUseCase: SavedElectionDetailUseCase
 ) : ViewModel() {
 
     //TODO: Add live data to hold voter info
