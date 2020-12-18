@@ -40,6 +40,7 @@ class DetailInfoFragment : LocationFragment() {
             viewModel.validateInternet()
         } else {
             binding.actionButton.text = getString(R.string.delete_election)
+            viewModel.showOfflineData(args.id)
         }
 
         locationViewModel.address.observe(viewLifecycleOwner, {
