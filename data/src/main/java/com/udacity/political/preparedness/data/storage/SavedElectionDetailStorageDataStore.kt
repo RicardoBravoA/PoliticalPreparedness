@@ -14,8 +14,7 @@ class SavedElectionDetailStorageDataStore(private val savedElectionDetailDao: Sa
     SavedElectionDetailDataStore {
 
     override suspend fun get(
-        id: String,
-        address: String
+        id: String
     ): ResultType<ElectionDetailModel, ErrorModel> =
         withContext(Dispatchers.IO) {
             try {
