@@ -12,10 +12,10 @@ interface SavedElectionDetailDao {
     @Query("select * from election_detail_table where id = :id")
     fun getElectionDetail(id: String): SavedElectionDetailEntity
 
-    @Query("select * from election_detail_table ")
+    @Query("select * from election_detail_table")
     fun getAllElectionDetail(): List<SavedElectionDetailEntity>
 
-    @Query("delete from election_table where id = :id")
+    @Query("delete from election_detail_table where id = :id")
     fun delete(id: String)
 
 }
