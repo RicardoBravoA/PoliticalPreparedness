@@ -37,6 +37,21 @@ object ElectionDetailMapper {
         }
     }
 
+    fun transformModelToEntity(electionDetailModel: ElectionDetailModel): ElectionDetailEntity {
+        electionDetailModel.apply {
+            return ElectionDetailEntity(
+                id,
+                name,
+                electionDay,
+                DivisionMapper.transformModelToString(divisionModel),
+                electionInfoUrl,
+                votingLocationFinderUrl,
+                ballotInfoUrl,
+                address
+            )
+        }
+    }
+
     fun transformResponseToModel(electionDetailResponse: ElectionDetailResponse): ElectionDetailModel {
         val election = electionDetailResponse.election
         val administration = electionDetailResponse.state.first().electionAdministrationBody

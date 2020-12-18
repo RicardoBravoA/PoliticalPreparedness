@@ -9,4 +9,8 @@ object DivisionMapper {
         return ElectionUtil.divisionFromJson(divisionId)
     }
 
+    fun transformModelToString(divisionModel: DivisionModel): String {
+        return ElectionUtil.divisionToJson(divisionModel)
+    }
+
 }

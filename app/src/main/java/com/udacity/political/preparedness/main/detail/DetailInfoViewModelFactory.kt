@@ -3,7 +3,6 @@ package com.udacity.political.preparedness.main.detail
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.udacity.political.preparedness.data.datastore.factory.ElectionDetailDataStoreFactory
 import com.udacity.political.preparedness.data.repository.ElectionDetailDataRepository
 import com.udacity.political.preparedness.domain.usecase.ElectionDetailUseCase
 
@@ -12,7 +11,7 @@ class DetailInfoViewModelFactory(val app: Application) : ViewModelProvider.Facto
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailInfoViewModel::class.java)) {
 
-            val dataRepository = ElectionDetailDataRepository(ElectionDetailDataStoreFactory(app))
+            val dataRepository = ElectionDetailDataRepository()
             val useCase = ElectionDetailUseCase(dataRepository)
 
             return DetailInfoViewModel(app.baseContext, useCase) as T
