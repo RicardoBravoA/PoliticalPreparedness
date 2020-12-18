@@ -8,6 +8,8 @@ interface SavedElectionDetailDataStore {
 
     suspend fun get(id: String, address: String): ResultType<ElectionDetailModel, ErrorModel>
 
+    suspend fun getAll(): ResultType<List<ElectionDetailModel>, ErrorModel>
+
     suspend fun save(electionDetailModel: ElectionDetailModel)
 
 }
