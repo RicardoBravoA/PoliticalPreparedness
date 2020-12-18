@@ -53,4 +53,8 @@ class SavedElectionDetailStorageDataStore(private val savedElectionDetailDao: Sa
             }
         }
 
+    override suspend fun delete(id: String) = withContext(Dispatchers.IO) {
+        savedElectionDetailDao.delete(id)
+    }
+
 }
