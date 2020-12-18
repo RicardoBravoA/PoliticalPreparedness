@@ -11,6 +11,10 @@ class SavedElectionDetailUseCase(private val savedElectionDetailRepository: Save
         return savedElectionDetailRepository.get(id, address)
     }
 
+    suspend fun getAll(): ResultType<List<ElectionDetailModel>, ErrorModel> {
+        return savedElectionDetailRepository.getAll()
+    }
+
     suspend fun save(electionDetailModel: ElectionDetailModel) {
         return savedElectionDetailRepository.save(electionDetailModel)
     }
