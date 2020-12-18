@@ -50,7 +50,7 @@ class DetailInfoFragment : LocationFragment() {
             if (args.fromSaved) {
                 viewModel.saveElection()
             } else {
-                
+                viewModel.deleteElection()
             }
 
         }

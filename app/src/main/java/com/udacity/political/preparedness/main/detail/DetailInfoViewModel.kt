@@ -76,10 +76,10 @@ class DetailInfoViewModel(
         }
     }
 
-    fun deleteElection(id: String) {
+    fun deleteElection() {
         viewModelScope.launch {
             data.value?.let {
-                savedElectionDetailUseCase.delete(id)
+                savedElectionDetailUseCase.delete(it.id)
             }
         }
     }
