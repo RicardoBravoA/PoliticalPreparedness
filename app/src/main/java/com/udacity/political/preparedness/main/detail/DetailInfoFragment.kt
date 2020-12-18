@@ -35,6 +35,8 @@ class DetailInfoFragment : LocationFragment() {
 
         val args by navArgs<DetailInfoFragmentArgs>()
 
+        viewModel.fromSaved(args.fromSaved)
+
         if (!args.fromSaved) {
             binding.actionButton.text = getString(R.string.follow_election)
             viewModel.validateInternet()
@@ -105,47 +107,5 @@ class DetailInfoFragment : LocationFragment() {
 
         return binding.root
     }
-
-    /*override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        //TODO: Add ViewModel values and create ViewModel
-
-        //TODO: Add binding values
-
-        //TODO: Populate voter info -- hide views without provided data.
-        */
-    /**
-    Hint: You will need to ensure proper data is provided from previous fragment.
-     *//*
-
-
-        //TODO: Handle loading of URLs
-
-        //TODO: Handle save button UI state
-        //TODO: cont'd Handle save button clicks
-
-        val binding = FragmentVoterInfoBinding.inflate(inflater)
-        binding.lifecycleOwner = this
-
-
-        val args by navArgs<DetailInfoFragmentArgs>()
-
-        val viewModel: DetailInfoViewModel by lazy {
-            ViewModelProvider(this, DetailInfoViewModelFactory(requireActivity().application)).get(
-                DetailInfoViewModel::class.java
-            )
-        }
-
-        viewModel.showData(args.id)
-
-        return binding.root
-
-    }*/
-
-    //TODO: Create method to load URL intents
 
 }
