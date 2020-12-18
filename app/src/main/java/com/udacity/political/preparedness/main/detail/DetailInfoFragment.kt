@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.udacity.political.preparedness.R
 import com.udacity.political.preparedness.common.LocationFragment
@@ -47,10 +48,12 @@ class DetailInfoFragment : LocationFragment() {
         })
 
         binding.actionButton.setOnClickListener {
-            if (args.fromSaved) {
+            if (!args.fromSaved) {
                 viewModel.saveElection()
+                findNavController().popBackStack()
             } else {
                 viewModel.deleteElection()
+                findNavController().popBackStack()
             }
 
         }

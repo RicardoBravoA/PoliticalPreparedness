@@ -7,7 +7,7 @@ import com.udacity.political.preparedness.data.storage.entity.SavedElectionDetai
 interface SavedElectionDetailDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertElectionDetail(detailSaved: SavedElectionDetailEntity)
+    fun insertElectionDetail(detail: SavedElectionDetailEntity)
 
     @Query("select * from election_detail_table where id = :id")
     fun getElectionDetail(id: String): SavedElectionDetailEntity
