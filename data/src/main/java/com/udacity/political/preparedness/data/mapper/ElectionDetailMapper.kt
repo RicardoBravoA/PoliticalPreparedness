@@ -37,6 +37,14 @@ object ElectionDetailMapper {
         }
     }
 
+    fun transformEntityToModel(savedElectionDetailEntity: List<SavedElectionDetailEntity>): List<ElectionDetailModel> {
+        val list = arrayListOf<ElectionDetailModel>()
+        savedElectionDetailEntity.forEach {
+            list.add(transformEntityToModel(it))
+        }
+        return list
+    }
+
     fun transformModelToEntity(electionDetailModel: ElectionDetailModel): SavedElectionDetailEntity {
         electionDetailModel.apply {
             return SavedElectionDetailEntity(
