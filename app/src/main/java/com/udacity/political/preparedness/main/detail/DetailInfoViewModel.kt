@@ -67,4 +67,13 @@ class DetailInfoViewModel(
             }
         }
     }
+
+    fun saveElection() {
+        viewModelScope.launch {
+            data.value?.let {
+                savedElectionDetailUseCase.save(it)
+            }
+        }
+    }
+
 }

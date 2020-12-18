@@ -47,6 +47,11 @@ class DetailInfoFragment : LocationFragment() {
         })
 
         binding.actionButton.setOnClickListener {
+            if (args.fromSaved) {
+                viewModel.saveElection()
+            } else {
+                
+            }
 
         }
 
