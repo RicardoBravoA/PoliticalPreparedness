@@ -1,13 +1,13 @@
 package com.udacity.political.preparedness.data.mapper
 
-import com.udacity.political.preparedness.data.storage.entity.SavedElectionEntity
+import com.udacity.political.preparedness.data.storage.entity.SavedElectionDetailEntity
 import com.udacity.political.preparedness.data.util.ElectionUtil
 import com.udacity.political.preparedness.domain.model.DivisionModel
 import com.udacity.political.preparedness.domain.model.ElectionModel
 
 object SavedElectionMapper {
 
-    fun transformEntityToModel(savedElectionEntityList: List<SavedElectionEntity>): List<ElectionModel> {
+    fun transformEntityToModel(savedElectionEntityList: List<SavedElectionDetailEntity>): List<ElectionModel> {
         val electionModelList = mutableListOf<ElectionModel>()
 
         savedElectionEntityList.forEach {
@@ -16,7 +16,7 @@ object SavedElectionMapper {
         return electionModelList
     }
 
-    private fun transformElectionEntityToModel(savedElectionEntity: SavedElectionEntity): ElectionModel {
+    private fun transformElectionEntityToModel(savedElectionEntity: SavedElectionDetailEntity): ElectionModel {
         savedElectionEntity.apply {
             return ElectionModel(id, name, electionDay, transformDivisionStringToModel(divisionId))
         }

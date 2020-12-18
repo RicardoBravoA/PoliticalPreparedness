@@ -5,12 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.udacity.political.preparedness.data.storage.entity.ElectionDetailEntity
+import com.udacity.political.preparedness.data.storage.entity.SavedElectionDetailEntity
 import com.udacity.political.preparedness.data.storage.entity.ElectionEntity
-import com.udacity.political.preparedness.data.storage.entity.SavedElectionEntity
 
 @Database(
-    entities = [ElectionEntity::class, SavedElectionEntity::class, ElectionDetailEntity::class],
+    entities = [ElectionEntity::class, SavedElectionDetailEntity::class],
     version = 1,
     exportSchema = false
 )
@@ -19,9 +18,7 @@ abstract class ElectionDatabase : RoomDatabase() {
 
     abstract val electionDao: ElectionDao
 
-    abstract val electionDetailDao: ElectionDetailDao
-
-    abstract val savedElectionDao: SavedElectionDao
+    abstract val savedElectionDetailDao: SavedElectionDetailDao
 
     companion object {
 

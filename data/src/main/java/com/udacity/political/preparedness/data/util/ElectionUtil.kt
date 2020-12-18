@@ -18,8 +18,8 @@ object ElectionUtil {
     }
 
     @ToJson
-    fun divisionToJson(divisionEntity: DivisionModel): String {
-        return divisionEntity.id
+    fun divisionToJson(divisionModel: DivisionModel): String {
+        return divisionModel.id
     }
 
 }

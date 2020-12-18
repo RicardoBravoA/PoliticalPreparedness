@@ -43,6 +43,9 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <argument
+            android:name="fromSaved"
+            app:argType="boolean" />
     </fragment>
 
 </navigation>

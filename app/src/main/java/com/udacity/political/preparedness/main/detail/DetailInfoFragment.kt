@@ -34,6 +34,10 @@ class DetailInfoFragment : LocationFragment() {
 
         val args by navArgs<DetailInfoFragmentArgs>()
 
+        if (!args.fromSaved) {
+            viewModel.validateInternet()
+        }
+
         locationViewModel.address.observe(viewLifecycleOwner, {
             Log.i("z- address", it.toString())
             viewModel.showData(args.id, it.address)

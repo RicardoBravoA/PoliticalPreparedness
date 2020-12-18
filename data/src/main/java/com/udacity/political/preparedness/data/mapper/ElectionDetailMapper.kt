@@ -2,15 +2,15 @@ package com.udacity.political.preparedness.data.mapper
 
 import com.udacity.political.preparedness.data.response.detail.ElectionDetailResponse
 import com.udacity.political.preparedness.data.response.detail.NormalizedInputResponse
-import com.udacity.political.preparedness.data.storage.entity.ElectionDetailEntity
+import com.udacity.political.preparedness.data.storage.entity.SavedElectionDetailEntity
 import com.udacity.political.preparedness.domain.model.ElectionDetailModel
 
 object ElectionDetailMapper {
 
-    fun transformResponseToEntity(electionDetailResponse: ElectionDetailResponse): ElectionDetailEntity {
+    fun transformResponseToEntity(electionDetailResponse: ElectionDetailResponse): SavedElectionDetailEntity {
         val election = electionDetailResponse.election
         val administration = electionDetailResponse.state.first().electionAdministrationBody
-        return ElectionDetailEntity(
+        return SavedElectionDetailEntity(
             election.id,
             election.name,
             election.electionDay,
@@ -22,13 +22,36 @@ object ElectionDetailMapper {
         )
     }
 
-    fun transformEntityToModel(electionDetailEntity: ElectionDetailEntity): ElectionDetailModel {
-        electionDetailEntity.apply {
+    fun transformEntityToModel(savedElectionDetailEntity: SavedElectionDetailEntity): ElectionDetailModel {
+        savedElectionDetailEntity.apply {
             return ElectionDetailModel(
                 id,
                 name,
                 electionDay,
                 DivisionMapper.transformStringToModel(divisionId),
+                electionInfoUrl,
+                votingLocationFinderUrl,
+                ballotInfoUrl,
+                address
+            )
+        }
+    }
+
+    fun transformEntityToModel(savedElectionDetailEntity: List<SavedElectionDetailEntity>): List<ElectionDetailModel> {
+        val list = arrayListOf<ElectionDetailModel>()
+        savedElectionDetailEntity.forEach {
+            list.add(transformEntityToModel(it))
+        }
+        return list
+    }
+
+    fun transformModelToEntity(electionDetailModel: ElectionDetailModel): SavedElectionDetailEntity {
+        electionDetailModel.apply {
+            return SavedElectionDetailEntity(
+                id,
+                name,
+                electionDay,
+                DivisionMapper.transformModelToString(divisionModel),
                 electionInfoUrl,
                 votingLocationFinderUrl,
                 ballotInfoUrl,

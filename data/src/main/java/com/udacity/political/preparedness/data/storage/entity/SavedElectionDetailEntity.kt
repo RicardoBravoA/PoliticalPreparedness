@@ -7,7 +7,7 @@ import com.squareup.moshi.Json
 import java.util.*
 
 @Entity(tableName = "election_detail_table")
-data class ElectionDetailEntity(
+data class SavedElectionDetailEntity(
     @PrimaryKey val id: String,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "electionDay") val electionDay: Date,
