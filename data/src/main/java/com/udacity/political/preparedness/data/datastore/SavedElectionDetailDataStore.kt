@@ -12,4 +12,6 @@ interface SavedElectionDetailDataStore {
 
     suspend fun save(electionDetailModel: ElectionDetailModel)
 
+    suspend fun delete(id: String)
+
 }
