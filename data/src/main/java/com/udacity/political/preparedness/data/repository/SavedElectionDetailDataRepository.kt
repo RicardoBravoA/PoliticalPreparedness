@@ -28,7 +28,7 @@ class SavedElectionDetailDataRepository(private val context: Context) :
 
     override suspend fun getAll(): ResultType<List<ElectionDetailModel>, ErrorModel> {
         val database = ElectionDatabase.getInstance(context)
-        return SavedElectionDetailStorageDataStore(database.savedElectionDetailDao).get(id, address)
+        return SavedElectionDetailStorageDataStore(database.savedElectionDetailDao).getAll()
     }
 
 }
