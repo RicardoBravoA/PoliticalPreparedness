@@ -39,4 +39,18 @@ class SavedElectionDetailStorageDataStore(private val savedElectionDetailDao: Sa
             )
         }
 
+    override suspend fun getAll(): ResultType<List<ElectionDetailModel>, ErrorModel> =
+        withContext(Dispatchers.IO) {
+            try {
+                val response = savedElectionDetailDao.getAllElectionDetail()
+                return@withContext ResultType.Success(
+                    ElectionDetailMapper.transformEntityToModel(
+                        response
+                    )
+                )
+            } catch (t: Throwable) {
+                return@withContext ResultType.Error(ErrorMapper.errorModelDefault())
+            }
+        }
+
 }
