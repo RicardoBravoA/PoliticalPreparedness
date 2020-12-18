@@ -31,4 +31,9 @@ class SavedElectionDetailDataRepository(private val context: Context) :
         return SavedElectionDetailStorageDataStore(database.savedElectionDetailDao).getAll()
     }
 
+    override suspend fun delete(id: String) {
+        val database = ElectionDatabase.getInstance(context)
+        return SavedElectionDetailStorageDataStore(database.savedElectionDetailDao).delete(id)
+    }
+
 }
