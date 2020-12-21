@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.udacity.political.preparedness.R
+import com.udacity.political.preparedness.data.util.isInternet
 import com.udacity.political.preparedness.domain.usecase.RepresentativeUseCase
 
 class RepresentativeViewModel(
@@ -21,6 +22,21 @@ class RepresentativeViewModel(
     val stateList: LiveData<List<String>>
         get() = _stateList
 
+    private val _showForm = MutableLiveData<Boolean>()
+    val showForm: LiveData<Boolean>
+        get() = _showForm
+
+    private val _showErrorForm = MutableLiveData<Boolean>()
+    val showErrorForm: LiveData<Boolean>
+        get() = _showErrorForm
+
+    fun validateInternet() {
+        val internet = context.isInternet()
+
+        _showForm.value = internet
+        _showErrorForm.value = !internet
+    }
+
 
     /**
      *  The following code will prove helpful in constructing a representative from the API. This code combines the two nodes of the RepresentativeResponse into a single official :
@@ -35,20 +51,6 @@ class RepresentativeViewModel(
     //TODO: Create function to get address from individual fields
 
     fun loadSpinner() {
-
-
-//        val states = context.resources.getStringArray(R.array.states)
-
-//        val spinnerList: List<String> =
-//            ArrayList<String>(listOf(context.resources.getStringArray(R.array.states)))
-//            ArrayList<String>(listOf(context.resources.getStringArray(R.array.states)))
-//            listOf<String>(context.resources.getStringArray(R.array.states))
-
-        /*val statesList: ArrayList<String> = ArrayList<String>(states.size)
-        for (file in states) {
-            statesList.add(file)
-        }*/
-
         val list =
             listOf(*context.resources.getStringArray(R.array.states))
 

@@ -5,22 +5,25 @@ import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.udacity.political.preparedness.data.response.AddressResponse
+import com.udacity.political.preparedness.common.LocationFragment
 import com.udacity.political.preparedness.databinding.FragmentRepresentativeBinding
-import com.udacity.political.preparedness.main.election.ElectionsViewModel
-import com.udacity.political.preparedness.main.election.ElectionsViewModelFactory
+import com.udacity.political.preparedness.domain.model.representative.AddressModel
 import com.udacity.political.preparedness.util.setEntries
+import com.udacity.political.preparedness.util.visible
 import java.util.*
 
-class RepresentativeFragment : Fragment() {
+class RepresentativeFragment : LocationFragment() {
+
+    private lateinit var binding: FragmentRepresentativeBinding
 
     private val viewModel: RepresentativeViewModel by lazy {
         ViewModelProvider(this, RepresentativeViewModelFactory(requireActivity().application)).get(
             RepresentativeViewModel::class.java
         )
     }
+
+    override fun layoutParent() = binding.constraintParent
 
     companion object {
         //TODO: Add Constant for Location request
@@ -42,8 +45,10 @@ class RepresentativeFragment : Fragment() {
 
         //TODO: Establish button listeners for field and location search
 
-        val binding = FragmentRepresentativeBinding.inflate(inflater)
+        binding = FragmentRepresentativeBinding.inflate(inflater)
         binding.lifecycleOwner = this
+
+        viewModel.validateInternet()
 
         viewModel.loadSpinner()
 
@@ -52,16 +57,37 @@ class RepresentativeFragment : Fragment() {
             binding.stateSpinner.setEntries(it)
         })
 
+        viewModel.showForm.observe(viewLifecycleOwner, {
+            binding.constraintForm.visible(it)
+            if (it) {
+                validateGPS()
+            }
+        })
+
+        viewModel.showErrorForm.observe(viewLifecycleOwner, {
+            binding.constraintError.visible(it)
+        })
+
+        binding.locationButton.setOnClickListener {
+            validateGPS()
+        }
+
+        locationViewModel.location.observe(viewLifecycleOwner, {
+            Log.i("z- location", it.toString())
+            val address = geoCodeLocation(it)
+            Log.i("z- address", address.toString())
+        })
+
         return binding.root
 
     }
 
 
-    private fun geoCodeLocation(location: Location): AddressResponse {
+    private fun geoCodeLocation(location: Location): AddressModel {
         val geocoder = Geocoder(context, Locale.getDefault())
         return geocoder.getFromLocation(location.latitude, location.longitude, 1)
             .map { address ->
-                AddressResponse(
+                AddressModel(
                     address.thoroughfare,
                     address.subThoroughfare,
                     address.locality,

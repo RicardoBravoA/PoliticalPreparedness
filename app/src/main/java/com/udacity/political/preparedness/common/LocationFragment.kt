@@ -1,10 +1,7 @@
 package com.udacity.political.preparedness.common
 
 import android.location.Location
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
@@ -23,13 +20,13 @@ abstract class LocationFragment : Fragment(), LocationActivity.UpdateLocation,
 
     abstract fun layoutParent(): View
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = super.onCreateView(inflater, container, savedInstanceState)
+    fun validateGPS() {
+        (requireActivity() as LocationActivity).setOnUpdateLocation(this)
+        (requireActivity() as LocationActivity).setOnGPSStatus(this)
+        (requireActivity() as LocationActivity).permissionGPS()
+    }
 
+    fun geocode() {
         locationViewModel.gpsStatus.observe(viewLifecycleOwner, { status ->
             if (status) {
                 location?.let {
@@ -40,18 +37,11 @@ abstract class LocationFragment : Fragment(), LocationActivity.UpdateLocation,
                 showSnackbar()
             }
         })
-
-        return view
-    }
-
-    fun validateGPS() {
-        (requireActivity() as LocationActivity).setOnUpdateLocation(this)
-        (requireActivity() as LocationActivity).setOnGPSStatus(this)
-        (requireActivity() as LocationActivity).permissionGPS()
     }
 
     override fun onUpdateLocation(location: Location) {
         this.location = location
+        locationViewModel.location(location)
     }
 
     override fun onGPSStatus(status: Boolean) {

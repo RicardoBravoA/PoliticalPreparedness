@@ -1,7 +1,6 @@
 package com.udacity.political.preparedness.main.election
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,7 +50,6 @@ class ElectionsFragment : Fragment() {
         })
 
         viewModel.savedElectionList.observe(viewLifecycleOwner, {
-            Log.i("z- savedElectionList", it.toString())
             savedElectionAdapter.submitList(it)
         })
 

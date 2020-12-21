@@ -39,7 +39,6 @@ class ElectionsViewModel(
         viewModelScope.launch {
             when (val result = electionUseCase.get()) {
                 is ResultType.Success -> {
-                    Log.i("z- data", result.value.toString())
                     _electionList.value = result.value
                 }
                 is ResultType.Error -> {
@@ -53,7 +52,6 @@ class ElectionsViewModel(
         viewModelScope.launch {
             when (val result = savedElectionDetailUseCase.getAll()) {
                 is ResultType.Success -> {
-                    Log.i("z- data", result.value.toString())
                     _savedElectionList.value = result.value
                 }
                 is ResultType.Error -> {
