@@ -7,8 +7,8 @@ import android.util.Log
 import android.view.*
 import androidx.lifecycle.ViewModelProvider
 import com.udacity.political.preparedness.common.LocationFragment
-import com.udacity.political.preparedness.data.response.AddressResponse
 import com.udacity.political.preparedness.databinding.FragmentRepresentativeBinding
+import com.udacity.political.preparedness.domain.model.representative.AddressModel
 import com.udacity.political.preparedness.util.setEntries
 import com.udacity.political.preparedness.util.visible
 import java.util.*
@@ -83,11 +83,11 @@ class RepresentativeFragment : LocationFragment() {
     }
 
 
-    private fun geoCodeLocation(location: Location): AddressResponse {
+    private fun geoCodeLocation(location: Location): AddressModel {
         val geocoder = Geocoder(context, Locale.getDefault())
         return geocoder.getFromLocation(location.latitude, location.longitude, 1)
             .map { address ->
-                AddressResponse(
+                AddressModel(
                     address.thoroughfare,
                     address.subThoroughfare,
                     address.locality,
