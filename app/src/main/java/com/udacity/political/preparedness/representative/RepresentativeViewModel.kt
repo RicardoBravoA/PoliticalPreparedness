@@ -35,20 +35,6 @@ class RepresentativeViewModel(
     //TODO: Create function to get address from individual fields
 
     fun loadSpinner() {
-
-
-//        val states = context.resources.getStringArray(R.array.states)
-
-//        val spinnerList: List<String> =
-//            ArrayList<String>(listOf(context.resources.getStringArray(R.array.states)))
-//            ArrayList<String>(listOf(context.resources.getStringArray(R.array.states)))
-//            listOf<String>(context.resources.getStringArray(R.array.states))
-
-        /*val statesList: ArrayList<String> = ArrayList<String>(states.size)
-        for (file in states) {
-            statesList.add(file)
-        }*/
-
         val list =
             listOf(*context.resources.getStringArray(R.array.states))
 
