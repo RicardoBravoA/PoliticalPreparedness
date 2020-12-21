@@ -1,7 +1,6 @@
 package com.udacity.political.preparedness.representative
 
 import android.location.Geocoder
-import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -57,6 +56,7 @@ class RepresentativeFragment : LocationFragment() {
         })
 
         viewModel.showForm.observe(viewLifecycleOwner, {
+            Log.i("z- showForm", it.toString())
             binding.constraintForm.visible(it)
             if (it) {
                 validateGPS()
@@ -64,6 +64,7 @@ class RepresentativeFragment : LocationFragment() {
         })
 
         viewModel.showErrorForm.observe(viewLifecycleOwner, {
+            Log.i("z- showErrorForm", it.toString())
             binding.constraintError.visible(it)
         })
 

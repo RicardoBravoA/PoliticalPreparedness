@@ -3,6 +3,7 @@ package com.udacity.political.preparedness.representative
 import android.content.Context
 import android.location.Geocoder
 import android.location.Location
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -39,6 +40,7 @@ class RepresentativeViewModel(
 
     fun validateInternet() {
         val internet = context.isInternet()
+        Log.i("z- internet", internet.toString())
 
         _showForm.value = internet
         _showErrorForm.value = !internet
