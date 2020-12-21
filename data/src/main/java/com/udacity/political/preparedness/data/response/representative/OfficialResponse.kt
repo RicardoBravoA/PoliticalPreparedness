@@ -5,7 +5,7 @@ import com.udacity.political.preparedness.data.response.AddressResponse
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Official(
+data class OfficialResponse(
     val name: String,
     val address: List<AddressResponse>? = null,
     val party: String? = null,

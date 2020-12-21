@@ -1,4 +1,4 @@
-package com.udacity.political.preparedness.representative.adapter
+package com.udacity.political.preparedness.util
 
 import android.widget.ArrayAdapter
 import android.widget.Spinner

@@ -6,5 +6,5 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class RepresentativeResponse(
     val offices: List<OfficeResponse>,
-    val officials: List<Official>
+    val officials: List<OfficialResponse>
 ) : Parcelable

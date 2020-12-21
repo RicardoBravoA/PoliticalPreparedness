@@ -3,13 +3,24 @@ package com.udacity.political.preparedness.representative
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.udacity.political.preparedness.data.response.AddressResponse
 import com.udacity.political.preparedness.databinding.FragmentRepresentativeBinding
+import com.udacity.political.preparedness.main.election.ElectionsViewModel
+import com.udacity.political.preparedness.main.election.ElectionsViewModelFactory
+import com.udacity.political.preparedness.util.setEntries
 import java.util.*
 
 class RepresentativeFragment : Fragment() {
+
+    private val viewModel: RepresentativeViewModel by lazy {
+        ViewModelProvider(this, RepresentativeViewModelFactory(requireActivity().application)).get(
+            RepresentativeViewModel::class.java
+        )
+    }
 
     companion object {
         //TODO: Add Constant for Location request
@@ -33,6 +44,13 @@ class RepresentativeFragment : Fragment() {
 
         val binding = FragmentRepresentativeBinding.inflate(inflater)
         binding.lifecycleOwner = this
+
+        viewModel.loadSpinner()
+
+        viewModel.stateList.observe(viewLifecycleOwner, {
+            Log.i("z- stateList", it.toString())
+            binding.stateSpinner.setEntries(it)
+        })
 
         return binding.root
 
