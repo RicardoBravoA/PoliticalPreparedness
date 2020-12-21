@@ -1,8 +1,10 @@
 package com.udacity.political.preparedness.representative
 
 import androidx.lifecycle.ViewModel
+import com.udacity.political.preparedness.domain.usecase.RepresentativeUseCase
 
-class RepresentativeViewModel : ViewModel() {
+class RepresentativeViewModel(private val representativeUseCase: RepresentativeUseCase) :
+    ViewModel() {
 
     //TODO: Establish live data for representatives and address
 
