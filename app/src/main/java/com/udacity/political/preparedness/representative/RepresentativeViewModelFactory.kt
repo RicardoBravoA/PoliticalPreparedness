@@ -15,6 +15,7 @@ class RepresentativeViewModelFactory(val app: Application) : ViewModelProvider.F
             val representativeUseCase = RepresentativeUseCase(representativeDataRepository)
 
             return RepresentativeViewModel(
+                app.baseContext,
                 representativeUseCase
             ) as T
         }
