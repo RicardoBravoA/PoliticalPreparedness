@@ -1,5 +1,6 @@
 package com.udacity.political.preparedness.common
 
+import android.location.Location
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,12 +21,20 @@ class LocationViewModel(private val geocodeUseCase: GeocodeUseCase) : ViewModel(
     val address: LiveData<GeocodeModel>
         get() = _address
 
+    private val _location = MutableLiveData<Location>()
+    val location: LiveData<Location>
+        get() = _location
+
     fun addGPSStatus(value: Boolean) {
         _gpsStatus.value = value
     }
 
     fun clearGPSStatus() {
         _gpsStatus.value = false
+    }
+
+    fun location(location: Location) {
+        _location.value = location
     }
 
     fun geocode(coordinates: String) {

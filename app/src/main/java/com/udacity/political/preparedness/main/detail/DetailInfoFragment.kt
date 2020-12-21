@@ -34,6 +34,7 @@ class DetailInfoFragment : LocationFragment() {
 
         val args by navArgs<DetailInfoFragmentArgs>()
 
+        geocode()
         viewModel.init(args.id, args.fromSaved)
 
         viewModel.buttonText.observe(viewLifecycleOwner, {
