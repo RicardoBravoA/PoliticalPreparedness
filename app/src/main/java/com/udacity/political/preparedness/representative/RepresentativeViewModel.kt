@@ -1,11 +1,14 @@
 package com.udacity.political.preparedness.representative
 
 import android.content.Context
+import android.location.Geocoder
+import android.location.Location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.udacity.political.preparedness.R
 import com.udacity.political.preparedness.data.util.isInternet
+import com.udacity.political.preparedness.domain.model.representative.AddressModel
 import com.udacity.political.preparedness.domain.usecase.RepresentativeUseCase
 
 class RepresentativeViewModel(
@@ -30,6 +33,10 @@ class RepresentativeViewModel(
     val showErrorForm: LiveData<Boolean>
         get() = _showErrorForm
 
+    private val _addressModel = MutableLiveData<AddressModel>()
+    val addressModel: LiveData<AddressModel>
+        get() = _addressModel
+
     fun validateInternet() {
         val internet = context.isInternet()
 
@@ -37,6 +44,20 @@ class RepresentativeViewModel(
         _showErrorForm.value = !internet
     }
 
+    fun showAddress(geocoder: Geocoder, location: Location) {
+        val addressModel = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+            .map { address ->
+                AddressModel(
+                    address.thoroughfare,
+                    address.subThoroughfare,
+                    address.locality,
+                    address.adminArea,
+                    address.postalCode
+                )
+            }
+            .first()
+        _addressModel.value = addressModel
+    }
 
     /**
      *  The following code will prove helpful in constructing a representative from the API. This code combines the two nodes of the RepresentativeResponse into a single official :

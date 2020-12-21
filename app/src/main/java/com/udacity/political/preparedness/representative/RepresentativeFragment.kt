@@ -74,8 +74,12 @@ class RepresentativeFragment : LocationFragment() {
 
         locationViewModel.location.observe(viewLifecycleOwner, {
             Log.i("z- location", it.toString())
-            val address = geoCodeLocation(it)
-            Log.i("z- address", address.toString())
+//            val address = geoCodeLocation(it)
+            viewModel.showAddress(Geocoder(context, Locale.getDefault()), it)
+        })
+
+        viewModel.addressModel.observe(viewLifecycleOwner, {
+            Log.i("z- address", it.toString())
         })
 
         return binding.root
@@ -83,8 +87,8 @@ class RepresentativeFragment : LocationFragment() {
     }
 
 
-    private fun geoCodeLocation(location: Location): AddressModel {
-        val geocoder = Geocoder(context, Locale.getDefault())
+    /*private fun geoCodeLocation(location: Location): AddressModel {
+
         return geocoder.getFromLocation(location.latitude, location.longitude, 1)
             .map { address ->
                 AddressModel(
@@ -96,6 +100,6 @@ class RepresentativeFragment : LocationFragment() {
                 )
             }
             .first()
-    }
+    }*/
 
 }
