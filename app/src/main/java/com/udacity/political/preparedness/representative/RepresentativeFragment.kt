@@ -1,14 +1,12 @@
 package com.udacity.political.preparedness.representative
 
 import android.location.Geocoder
-import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.lifecycle.ViewModelProvider
 import com.udacity.political.preparedness.common.LocationFragment
 import com.udacity.political.preparedness.databinding.FragmentRepresentativeBinding
-import com.udacity.political.preparedness.domain.model.representative.AddressModel
 import com.udacity.political.preparedness.util.setEntries
 import com.udacity.political.preparedness.util.visible
 import java.util.*
@@ -58,6 +56,7 @@ class RepresentativeFragment : LocationFragment() {
         })
 
         viewModel.showForm.observe(viewLifecycleOwner, {
+            Log.i("z- showForm", it.toString())
             binding.constraintForm.visible(it)
             if (it) {
                 validateGPS()
@@ -65,6 +64,7 @@ class RepresentativeFragment : LocationFragment() {
         })
 
         viewModel.showErrorForm.observe(viewLifecycleOwner, {
+            Log.i("z- showErrorForm", it.toString())
             binding.constraintError.visible(it)
         })
 
@@ -74,8 +74,16 @@ class RepresentativeFragment : LocationFragment() {
 
         locationViewModel.location.observe(viewLifecycleOwner, {
             Log.i("z- location", it.toString())
-            val address = geoCodeLocation(it)
-            Log.i("z- address", address.toString())
+//            val address = geoCodeLocation(it)
+            viewModel.showAddress(Geocoder(context, Locale.getDefault()), it)
+        })
+
+        viewModel.addressModel.observe(viewLifecycleOwner, {
+            Log.i("z- address", it.toString())
+            binding.addressLine1EditText.setText(it.line1)
+            binding.addressLine2EditText.setText(it.line2)
+            binding.cityEditText.setText(it.city)
+            binding.zipEditText.setText(it.city)
         })
 
         return binding.root
@@ -83,8 +91,8 @@ class RepresentativeFragment : LocationFragment() {
     }
 
 
-    private fun geoCodeLocation(location: Location): AddressModel {
-        val geocoder = Geocoder(context, Locale.getDefault())
+    /*private fun geoCodeLocation(location: Location): AddressModel {
+
         return geocoder.getFromLocation(location.latitude, location.longitude, 1)
             .map { address ->
                 AddressModel(
@@ -96,6 +104,6 @@ class RepresentativeFragment : LocationFragment() {
                 )
             }
             .first()
-    }
+    }*/
 
 }
