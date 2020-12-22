@@ -107,7 +107,7 @@
                 app:layout_constraintTop_toBottomOf="@id/location_button" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_placeholder"
+                android:id="@+id/representative_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/size_4"
