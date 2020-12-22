@@ -10,8 +10,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/picture_image_view"
-            android:layout_width="@dimen/size_128_dp"
-            android:layout_height="@dimen/size_128_dp"
+            android:layout_width="@dimen/size_96_dp"
+            android:layout_height="@dimen/size_96_dp"
             android:contentDescription="@string/picture"
             android:padding="@dimen/size_4"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -28,6 +28,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/picture_image_view"
             app:layout_constraintTop_toTopOf="@+id/picture_image_view" />
+
+        <TextView
+            android:id="@+id/name_text_view"
+            style="@style/RepresentativeItemName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/my_representatives"
+            app:layout_constraintEnd_toStartOf="@+id/web_image_view"
+            app:layout_constraintStart_toEndOf="@+id/picture_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/web_image_view"

@@ -67,4 +67,13 @@
         <item name="android:textColor">@color/plumb_item</item>
     </style>
 
+    <style name="RepresentativeItemName">
+        <item name="android:textSize">@dimen/size_20_sp</item>
+        <item name="android:textColor">@color/plumb_item</item>
+    </style>
+
+    <style name="RepresentativeItemDescription" parent="RepresentativeItemName">
+        <item name="android:textSize">@dimen/size_18_sp</item>
+    </style>
+
 </resources>
