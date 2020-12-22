@@ -7,6 +7,7 @@ import android.view.*
 import androidx.lifecycle.ViewModelProvider
 import com.udacity.political.preparedness.common.LocationFragment
 import com.udacity.political.preparedness.databinding.FragmentRepresentativeBinding
+import com.udacity.political.preparedness.util.selectValue
 import com.udacity.political.preparedness.util.setEntries
 import com.udacity.political.preparedness.util.visible
 import java.util.*
@@ -84,7 +85,8 @@ class RepresentativeFragment : LocationFragment() {
             binding.addressLine1EditText.setText(it.line1)
             binding.addressLine2EditText.setText(it.line2)
             binding.cityEditText.setText(it.city)
-            binding.zipEditText.setText(it.city)
+            binding.zipEditText.setText(it.zip)
+            binding.stateSpinner.selectValue(it.state)
         })
 
         return binding.root
