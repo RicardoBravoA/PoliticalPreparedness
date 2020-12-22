@@ -42,6 +42,7 @@ class RepresentativeAdapter(private val representativeClick: (representativeMode
             }
 
             binding.titleTextView.text = representativeModel.title
+            binding.nameTextView.text = representativeModel.name
 
         }
 
