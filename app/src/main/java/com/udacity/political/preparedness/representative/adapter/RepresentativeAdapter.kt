@@ -10,12 +10,13 @@ import com.bumptech.glide.Glide
 import com.udacity.political.preparedness.R
 import com.udacity.political.preparedness.databinding.ItemRepresentativeBinding
 import com.udacity.political.preparedness.domain.model.representative.RepresentativeModel
+import com.udacity.political.preparedness.util.visible
 
 class RepresentativeAdapter(private val representativeClick: (representativeModel: RepresentativeModel) -> Unit) :
     ListAdapter<RepresentativeModel, RepresentativeAdapter.ItemViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        return ItemViewHolder.from(parent)
+        return ItemViewHolder.from(parent, parent.context)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
@@ -33,7 +34,7 @@ class RepresentativeAdapter(private val representativeClick: (representativeMode
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(representativeModel: RepresentativeModel) {
-            representativeModel.web?.let {
+            representativeModel.image?.let {
                 Glide.with(context)
                     .load(it)
                     .placeholder(R.drawable.ic_profile)
@@ -44,6 +45,18 @@ class RepresentativeAdapter(private val representativeClick: (representativeMode
             binding.titleTextView.text = representativeModel.title
             binding.nameTextView.text = representativeModel.name
             binding.descriptionTextView.text = representativeModel.party
+
+            representativeModel.web?.let {
+                binding.webImageView.visible(true)
+            } ?: binding.webImageView.visible(false)
+
+            representativeModel.facebook?.let {
+                binding.facebookImageView.visible(true)
+            } ?: binding.facebookImageView.visible(false)
+
+            representativeModel.twitter?.let {
+                binding.twitterImageView.visible(true)
+            } ?: binding.twitterImageView.visible(false)
 
         }
 
