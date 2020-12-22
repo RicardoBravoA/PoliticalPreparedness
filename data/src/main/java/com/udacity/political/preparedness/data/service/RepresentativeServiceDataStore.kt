@@ -11,7 +11,7 @@ import com.udacity.political.preparedness.domain.util.ResultType
 
 class RepresentativeServiceDataStore() : RepresentativeDataStore {
 
-    override suspend fun get(address: String): ResultType<RepresentativeModel, ErrorModel> {
+    override suspend fun get(address: String): ResultType<List<RepresentativeModel>, ErrorModel> {
         val response = ApiManager.get().representatives(address)
         return if (response.isSuccessful) {
             val response = response.body()

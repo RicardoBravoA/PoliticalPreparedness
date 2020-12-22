@@ -7,7 +7,7 @@ import com.udacity.political.preparedness.domain.util.ResultType
 
 class RepresentativeUseCase(private val representativeRepository: RepresentativeRepository) {
 
-    suspend fun get(address: String): ResultType<RepresentativeModel, ErrorModel> {
+    suspend fun get(address: String): ResultType<List<RepresentativeModel>, ErrorModel> {
         return representativeRepository.get(address)
     }
 

@@ -9,11 +9,45 @@ import com.udacity.political.preparedness.domain.model.representative.*
 
 object RepresentativeMapper {
 
-    fun transformResponseToModel(representativeResponse: RepresentativeResponse): RepresentativeModel {
-        return RepresentativeModel(
+    fun transformResponseToModel(representativeResponse: RepresentativeResponse): List<RepresentativeModel> {
+        /*return RepresentativeModel(
             transformListOfficeResponseToModel(representativeResponse.offices),
             transformListOfficialResponseToModel(representativeResponse.officials)
-        )
+        )*/
+
+        val list = mutableListOf<RepresentativeModel>()
+        representativeResponse.offices.forEach { offices ->
+            val indices = offices.officials
+            indices.forEach { index ->
+                val official = representativeResponse.officials[index]
+                list.add(
+                    RepresentativeModel(
+                        index,
+                        official.photoUrl,
+                        offices.name,
+                        official.name,
+                        official.party,
+                        official.urls?.firstOrNull(),
+                        getFacebookUrl(official.channels),
+                        getTwitterUrl(official.channels)
+                    )
+                )
+            }
+        }
+
+        return list
+    }
+
+    private fun getFacebookUrl(channels: List<ChannelResponse>?): String? {
+        return channels?.filter { channel -> channel.type == "Facebook" }
+            ?.map { channel -> "https://www.facebook.com/${channel.id}" }
+            ?.firstOrNull()
+    }
+
+    private fun getTwitterUrl(channels: List<ChannelResponse>?): String? {
+        return channels?.filter { channel -> channel.type == "Twitter" }
+            ?.map { channel -> "https://www.twitter.com/${channel.id}" }
+            ?.firstOrNull()
     }
 
     private fun transformListOfficeResponseToModel(officeResponseList: List<OfficeResponse>): List<OfficeModel> {

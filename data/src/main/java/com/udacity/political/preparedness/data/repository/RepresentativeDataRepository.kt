@@ -8,7 +8,7 @@ import com.udacity.political.preparedness.domain.util.ResultType
 
 class RepresentativeDataRepository : RepresentativeRepository {
 
-    override suspend fun get(address: String): ResultType<RepresentativeModel, ErrorModel> {
+    override suspend fun get(address: String): ResultType<List<RepresentativeModel>, ErrorModel> {
         return RepresentativeServiceDataStore().get(address)
     }
 
