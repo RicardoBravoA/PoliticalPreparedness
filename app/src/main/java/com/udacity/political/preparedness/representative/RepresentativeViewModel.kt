@@ -7,10 +7,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.udacity.political.preparedness.R
+import com.udacity.political.preparedness.data.util.Constant
 import com.udacity.political.preparedness.data.util.isInternet
 import com.udacity.political.preparedness.domain.model.representative.AddressModel
 import com.udacity.political.preparedness.domain.usecase.RepresentativeUseCase
+import kotlinx.coroutines.launch
 
 class RepresentativeViewModel(
     private val context: Context,
@@ -44,6 +47,56 @@ class RepresentativeViewModel(
 
         _showForm.value = internet
         _showErrorForm.value = !internet
+    }
+
+    fun find(line1: String?, line2: String?, city: String?, state: String?, zip: String?) {
+        Log.i("z- find", "$line1 -  $line2 - $city - $state - $zip")
+        var address = ""
+
+        line2?.let {
+            address = address.plus(it)
+        }
+
+        if (address.isNotEmpty()) {
+            address = address.plus(Constant.SPACE)
+        }
+
+        line1?.let {
+            address = address.plus(it)
+        }
+
+        if (address.isNotEmpty()) {
+            address = address.plus(Constant.SPACE)
+        }
+
+        city?.let {
+            address = address.plus(it)
+        }
+
+        if (address.isNotEmpty()) {
+            address = address.plus(Constant.SPACE)
+        }
+
+        state?.let {
+            address = address.plus(it)
+        }
+
+        if (address.isNotEmpty()) {
+            address = address.plus(Constant.SPACE)
+        }
+
+        zip?.let {
+            address = address.plus(it)
+        }
+
+        if (address.isNotEmpty()) {
+            address = address.plus(Constant.SPACE)
+        }
+
+        viewModelScope.launch {
+            representativeUseCase.get(address)
+        }
+
     }
 
     fun showAddress(geocoder: Geocoder, location: Location) {

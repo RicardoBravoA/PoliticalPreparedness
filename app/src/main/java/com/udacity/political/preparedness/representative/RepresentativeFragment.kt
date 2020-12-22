@@ -74,6 +74,16 @@ class RepresentativeFragment : LocationFragment() {
             viewModel.validateInternet()
         }
 
+        binding.findButton.setOnClickListener {
+            viewModel.find(
+                binding.addressLine1EditText.text.toString(),
+                binding.addressLine2EditText.text.toString(),
+                binding.cityEditText.text.toString(),
+                binding.stateSpinner.selectedItem.toString(),
+                binding.zipEditText.text.toString()
+            )
+        }
+
         locationViewModel.location.observe(viewLifecycleOwner, {
             Log.i("z- location", it.toString())
 //            val address = geoCodeLocation(it)
