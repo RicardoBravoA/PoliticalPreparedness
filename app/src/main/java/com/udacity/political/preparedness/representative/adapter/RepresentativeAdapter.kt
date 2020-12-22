@@ -42,6 +42,7 @@ class RepresentativeAdapter(
                 Glide.with(context)
                     .load(it)
                     .placeholder(R.drawable.ic_profile)
+                    .circleCrop()
                     .error(R.drawable.ic_profile)
                     .into(binding.pictureImageView)
             }
