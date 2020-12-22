@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_4">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/picture_image_view"
+            android:layout_width="@dimen/size_96_dp"
+            android:layout_height="@dimen/size_96_dp"
+            android:contentDescription="@string/picture"
+            android:padding="@dimen/size_4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_profile" />
+
+        <TextView
+            android:id="@+id/title_text_view"
+            style="@style/RepresentativeItemTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/my_representatives"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/picture_image_view"
+            app:layout_constraintTop_toTopOf="@+id/picture_image_view" />
+
+        <TextView
+            android:id="@+id/name_text_view"
+            style="@style/RepresentativeItemName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_4"
+            android:text="@string/my_representatives"
+            app:layout_constraintEnd_toStartOf="@+id/web_image_view"
+            app:layout_constraintStart_toEndOf="@+id/picture_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
+
+        <TextView
+            android:id="@+id/description_text_view"
+            style="@style/RepresentativeItemDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/my_representatives"
+            app:layout_constraintBottom_toBottomOf="@+id/web_image_view"
+            app:layout_constraintEnd_toStartOf="@+id/web_image_view"
+            app:layout_constraintStart_toEndOf="@+id/picture_image_view" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/web_image_view"
+            android:layout_width="@dimen/size_40_dp"
+            android:layout_height="@dimen/size_40_dp"
+            android:layout_margin="@dimen/default_padding"
+            android:contentDescription="@string/web_url"
+            app:layout_constraintBottom_toBottomOf="@+id/picture_image_view"
+            app:layout_constraintEnd_toStartOf="@+id/facebook_image_view"
+            app:srcCompat="@drawable/ic_www" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/facebook_image_view"
+            android:layout_width="@dimen/size_40_dp"
+            android:layout_height="@dimen/size_40_dp"
+            android:layout_margin="@dimen/default_padding"
+            android:contentDescription="@string/facebook_url"
+            app:layout_constraintBottom_toBottomOf="@+id/picture_image_view"
+            app:layout_constraintEnd_toStartOf="@+id/twitter_image_view"
+            app:srcCompat="@drawable/ic_facebook" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/twitter_image_view"
+            android:layout_width="@dimen/size_40_dp"
+            android:layout_height="@dimen/size_40_dp"
+            android:layout_margin="@dimen/default_padding"
+            android:contentDescription="@string/twitter_url"
+            app:layout_constraintBottom_toBottomOf="@+id/picture_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_twitter" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
