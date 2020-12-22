@@ -9,4 +9,5 @@
     <color name="gray50">#7F7F7F</color>
     <color name="hyperlink">#1835CA</color>
     <color name="plumb">#424553</color>
+    <color name="plumb_item">#505463</color>
 </resources>

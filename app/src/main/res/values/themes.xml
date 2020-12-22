@@ -61,4 +61,10 @@
         <item name="android:textColor">@color/plumb</item>
     </style>
 
+    <style name="RepresentativeItemTitle">
+        <item name="android:textSize">@dimen/size_24_sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/plumb_item</item>
+    </style>
+
 </resources>
