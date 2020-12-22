@@ -58,9 +58,6 @@ class RepresentativeFragment : LocationFragment() {
         viewModel.showForm.observe(viewLifecycleOwner, {
             Log.i("z- showForm", it.toString())
             binding.constraintForm.visible(it)
-            if (it) {
-                validateGPS()
-            }
         })
 
         viewModel.showErrorForm.observe(viewLifecycleOwner, {
