@@ -42,8 +42,8 @@ class RepresentativeViewModel(
     val addressModel: LiveData<AddressModel>
         get() = _addressModel
 
-    private val _data = MutableLiveData<RepresentativeModel>()
-    val data: LiveData<RepresentativeModel>
+    private val _data = MutableLiveData<List<RepresentativeModel>>()
+    val data: LiveData<List<RepresentativeModel>>
         get() = _data
 
     fun validateInternet() {
