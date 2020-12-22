@@ -6,6 +6,6 @@ import com.udacity.political.preparedness.domain.util.ResultType
 
 interface RepresentativeRepository {
 
-    suspend fun get(address: String): ResultType<RepresentativeModel, ErrorModel>
+    suspend fun get(address: String): ResultType<List<RepresentativeModel>, ErrorModel>
 
 }
