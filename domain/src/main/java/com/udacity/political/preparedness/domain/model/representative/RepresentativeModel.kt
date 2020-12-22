@@ -5,6 +5,12 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class RepresentativeModel(
-    val offices: List<OfficeModel>,
-    val officials: List<OfficialModel>
+    val id: Int,
+    val image: String?,
+    val title: String?,
+    val name: String?,
+    val party: String?,
+    val web: String?,
+    val facebook: String?,
+    val twitter: String?
 ) : Parcelable
