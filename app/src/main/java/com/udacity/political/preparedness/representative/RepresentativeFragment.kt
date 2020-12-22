@@ -10,6 +10,7 @@ import com.udacity.political.preparedness.databinding.FragmentRepresentativeBind
 import com.udacity.political.preparedness.domain.model.representative.RepresentativeModel
 import com.udacity.political.preparedness.main.election.adapter.ElectionListAdapter
 import com.udacity.political.preparedness.representative.adapter.RepresentativeAdapter
+import com.udacity.political.preparedness.util.openWebView
 import com.udacity.political.preparedness.util.selectValue
 import com.udacity.political.preparedness.util.setEntries
 import com.udacity.political.preparedness.util.visible
@@ -105,6 +106,10 @@ class RepresentativeFragment : LocationFragment() {
         val representativeAdapter = RepresentativeAdapter(::representativeClick, ::iconClick)
         binding.representativeRecyclerView.adapter = representativeAdapter
 
+        viewModel.data.observe(viewLifecycleOwner, {
+            representativeAdapter.submitList(it)
+        })
+
         return binding.root
 
     }
@@ -114,7 +119,7 @@ class RepresentativeFragment : LocationFragment() {
     }
 
     private fun iconClick(url: String) {
-
+        requireContext().openWebView(url)
     }
 
     /*private fun geoCodeLocation(location: Location): AddressModel {

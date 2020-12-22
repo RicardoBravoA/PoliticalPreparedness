@@ -59,14 +59,14 @@ class RepresentativeAdapter(
 
             representativeModel.facebook?.let { url ->
                 binding.facebookImageView.visible(true)
-                binding.webImageView.setOnClickListener {
+                binding.facebookImageView.setOnClickListener {
                     iconClick(url)
                 }
             } ?: binding.facebookImageView.visible(false)
 
             representativeModel.twitter?.let { url ->
                 binding.twitterImageView.visible(true)
-                binding.webImageView.setOnClickListener {
+                binding.twitterImageView.setOnClickListener {
                     iconClick(url)
                 }
             } ?: binding.twitterImageView.visible(false)
