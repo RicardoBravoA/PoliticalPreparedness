@@ -7,6 +7,7 @@
     <dimen name="size_24_sp">24sp</dimen>
     <dimen name="size_28_sp">28sp</dimen>
     <dimen name="size_32_dp">32dp</dimen>
+    <dimen name="size_40_dp">40dp</dimen>
     <dimen name="size_48_dp">48dp</dimen>
     <dimen name="size_128_dp">128dp</dimen>
     <dimen name="size_200">200dp</dimen>
