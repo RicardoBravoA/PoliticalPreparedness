@@ -9,10 +9,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.udacity.political.preparedness.R
-import com.udacity.political.preparedness.data.util.Constant
 import com.udacity.political.preparedness.data.util.isInternet
 import com.udacity.political.preparedness.domain.model.representative.AddressModel
+import com.udacity.political.preparedness.domain.model.representative.RepresentativeModel
 import com.udacity.political.preparedness.domain.usecase.RepresentativeUseCase
+import com.udacity.political.preparedness.domain.util.ResultType
 import kotlinx.coroutines.launch
 
 class RepresentativeViewModel(
@@ -41,6 +42,10 @@ class RepresentativeViewModel(
     val addressModel: LiveData<AddressModel>
         get() = _addressModel
 
+    private val _data = MutableLiveData<RepresentativeModel>()
+    val data: LiveData<RepresentativeModel>
+        get() = _data
+
     fun validateInternet() {
         val internet = context.isInternet()
         Log.i("z- internet", internet.toString())
@@ -55,7 +60,15 @@ class RepresentativeViewModel(
         val address: String = RepresentativeMapper.address(line1, line2, city, state, zip)
 
         viewModelScope.launch {
-            representativeUseCase.get(address)
+            when (val result = representativeUseCase.get(address)) {
+                is ResultType.Success -> {
+                    _data.value = result.value
+                    Log.i("z- data", data.value.toString())
+                }
+                is ResultType.Error -> {
+                    //Do nothing
+                }
+            }
         }
 
     }
