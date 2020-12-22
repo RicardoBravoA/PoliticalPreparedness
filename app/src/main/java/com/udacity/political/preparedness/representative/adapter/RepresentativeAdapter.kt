@@ -41,6 +41,8 @@ class RepresentativeAdapter(private val representativeClick: (representativeMode
                     .into(binding.pictureImageView)
             }
 
+            binding.titleTextView.text = representativeModel.title
+
         }
 
         companion object {
