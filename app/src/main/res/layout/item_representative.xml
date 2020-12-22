@@ -5,7 +5,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="@dimen/size_4">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -32,9 +32,9 @@
         <TextView
             android:id="@+id/name_text_view"
             style="@style/RepresentativeItemName"
-            android:layout_marginTop="@dimen/size_4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_4"
             android:text="@string/my_representatives"
             app:layout_constraintEnd_toStartOf="@+id/web_image_view"
             app:layout_constraintStart_toEndOf="@+id/picture_image_view"
