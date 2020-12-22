@@ -12,12 +12,12 @@
             android:id="@+id/picture_image_view"
             android:layout_width="@dimen/size_128_dp"
             android:layout_height="@dimen/size_128_dp"
-            android:padding="@dimen/size_4"
-            app:srcCompat="@drawable/ic_profile"
             android:contentDescription="@string/picture"
+            android:padding="@dimen/size_4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_profile" />
 
         <TextView
             android:id="@+id/title_text_view"
@@ -28,6 +28,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/picture_image_view"
             app:layout_constraintTop_toTopOf="@+id/picture_image_view" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/web_image_view"
+            android:layout_width="@dimen/size_48_dp"
+            android:layout_height="@dimen/size_48_dp"
+            android:layout_margin="@dimen/default_padding"
+            android:contentDescription="@string/web_url"
+            app:layout_constraintBottom_toBottomOf="@+id/picture_image_view"
+            app:layout_constraintEnd_toStartOf="@+id/facebook_image_view"
+            app:srcCompat="@drawable/ic_www" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/facebook_image_view"
