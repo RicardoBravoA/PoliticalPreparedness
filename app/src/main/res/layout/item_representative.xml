@@ -12,7 +12,8 @@
             android:id="@+id/picture_image_view"
             android:layout_width="@dimen/size_128_dp"
             android:layout_height="@dimen/size_128_dp"
-            android:layout_margin="@dimen/size_4"
+            android:padding="@dimen/size_4"
+            app:srcCompat="@drawable/ic_profile"
             android:contentDescription="@string/picture"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,11 +30,21 @@
             app:layout_constraintTop_toTopOf="@+id/picture_image_view" />
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/facebook_image_view"
+            android:layout_width="@dimen/size_48_dp"
+            android:layout_height="@dimen/size_48_dp"
+            android:layout_margin="@dimen/default_padding"
+            android:contentDescription="@string/facebook_url"
+            app:layout_constraintBottom_toBottomOf="@+id/picture_image_view"
+            app:layout_constraintEnd_toStartOf="@+id/twitter_image_view"
+            app:srcCompat="@drawable/ic_facebook" />
+
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/twitter_image_view"
             android:layout_width="@dimen/size_48_dp"
             android:layout_height="@dimen/size_48_dp"
-            android:layout_margin="@dimen/size_4"
-            android:contentDescription="@string/picture"
+            android:layout_margin="@dimen/default_padding"
+            android:contentDescription="@string/twitter_url"
             app:layout_constraintBottom_toBottomOf="@+id/picture_image_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_twitter" />
