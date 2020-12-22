@@ -51,47 +51,8 @@ class RepresentativeViewModel(
 
     fun find(line1: String?, line2: String?, city: String?, state: String?, zip: String?) {
         Log.i("z- find", "$line1 -  $line2 - $city - $state - $zip")
-        var address = ""
 
-        line2?.let {
-            address = address.plus(it)
-        }
-
-        if (address.isNotEmpty()) {
-            address = address.plus(Constant.SPACE)
-        }
-
-        line1?.let {
-            address = address.plus(it)
-        }
-
-        if (address.isNotEmpty()) {
-            address = address.plus(Constant.SPACE)
-        }
-
-        city?.let {
-            address = address.plus(it)
-        }
-
-        if (address.isNotEmpty()) {
-            address = address.plus(Constant.SPACE)
-        }
-
-        state?.let {
-            address = address.plus(it)
-        }
-
-        if (address.isNotEmpty()) {
-            address = address.plus(Constant.SPACE)
-        }
-
-        zip?.let {
-            address = address.plus(it)
-        }
-
-        if (address.isNotEmpty()) {
-            address = address.plus(Constant.SPACE)
-        }
+        val address: String = RepresentativeMapper.address(line1, line2, city, state, zip)
 
         viewModelScope.launch {
             representativeUseCase.get(address)

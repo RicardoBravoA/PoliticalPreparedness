@@ -6,5 +6,6 @@ object Constant {
     const val GEOCODE_URL = "https://maps.googleapis.com/maps/api/geocode/json"
     const val DURATION = 10L
     const val SPACE = " "
+    const val EMPTY = ""
 
 }
