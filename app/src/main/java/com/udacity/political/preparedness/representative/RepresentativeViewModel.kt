@@ -7,10 +7,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.udacity.political.preparedness.R
 import com.udacity.political.preparedness.data.util.isInternet
 import com.udacity.political.preparedness.domain.model.representative.AddressModel
+import com.udacity.political.preparedness.domain.model.representative.RepresentativeModel
 import com.udacity.political.preparedness.domain.usecase.RepresentativeUseCase
+import com.udacity.political.preparedness.domain.util.ResultType
+import kotlinx.coroutines.launch
 
 class RepresentativeViewModel(
     private val context: Context,
@@ -38,12 +42,35 @@ class RepresentativeViewModel(
     val addressModel: LiveData<AddressModel>
         get() = _addressModel
 
+    private val _data = MutableLiveData<RepresentativeModel>()
+    val data: LiveData<RepresentativeModel>
+        get() = _data
+
     fun validateInternet() {
         val internet = context.isInternet()
         Log.i("z- internet", internet.toString())
 
         _showForm.value = internet
         _showErrorForm.value = !internet
+    }
+
+    fun find(line1: String?, line2: String?, city: String?, state: String?, zip: String?) {
+        Log.i("z- find", "$line1 -  $line2 - $city - $state - $zip")
+
+        val address: String = RepresentativeMapper.address(line1, line2, city, state, zip)
+
+        viewModelScope.launch {
+            when (val result = representativeUseCase.get(address)) {
+                is ResultType.Success -> {
+                    _data.value = result.value
+                    Log.i("z- data", data.value.toString())
+                }
+                is ResultType.Error -> {
+                    //Do nothing
+                }
+            }
+        }
+
     }
 
     fun showAddress(geocoder: Geocoder, location: Location) {
