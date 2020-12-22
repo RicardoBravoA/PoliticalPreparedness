@@ -73,7 +73,7 @@
     </style>
 
     <style name="RepresentativeItemDescription" parent="RepresentativeItemName">
-        <item name="android:textSize">@dimen/size_18_sp</item>
+        <item name="android:textSize">@dimen/size_16_sp</item>
     </style>
 
 </resources>

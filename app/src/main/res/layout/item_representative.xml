@@ -32,12 +32,23 @@
         <TextView
             android:id="@+id/name_text_view"
             style="@style/RepresentativeItemName"
+            android:layout_marginTop="@dimen/size_4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/my_representatives"
             app:layout_constraintEnd_toStartOf="@+id/web_image_view"
             app:layout_constraintStart_toEndOf="@+id/picture_image_view"
             app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
+
+        <TextView
+            android:id="@+id/description_text_view"
+            style="@style/RepresentativeItemDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/my_representatives"
+            app:layout_constraintBottom_toBottomOf="@+id/web_image_view"
+            app:layout_constraintEnd_toStartOf="@+id/web_image_view"
+            app:layout_constraintStart_toEndOf="@+id/picture_image_view" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/web_image_view"
