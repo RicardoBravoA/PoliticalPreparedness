@@ -9,12 +9,20 @@
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
         <Constraint
             android:id="@id/title_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.0" />
-    </ConstraintSet>
 
-    <ConstraintSet android:id="@+id/end"></ConstraintSet>
+        <Constraint
+            android:id="@id/address_line_1_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.0" />
+    </ConstraintSet>
 </MotionScene>
