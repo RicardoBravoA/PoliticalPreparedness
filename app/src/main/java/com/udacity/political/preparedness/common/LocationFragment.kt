@@ -16,7 +16,7 @@ abstract class LocationFragment : Fragment(), LocationActivity.UpdateLocation,
             LocationViewModel::class.java
         )
     }
-    private var snackbar: Snackbar? = null
+    private var locationSnackbar: Snackbar? = null
 
     abstract fun layoutParent(): View
 
@@ -31,10 +31,10 @@ abstract class LocationFragment : Fragment(), LocationActivity.UpdateLocation,
             if (status) {
                 location?.let {
                     locationViewModel.geocode("${it.latitude},${it.longitude}")
-                    dismissSnackbar()
+                    dismissLocationSnackbar()
                 }
             } else {
-                showSnackbar()
+                showLocationSnackbar()
             }
         })
     }
@@ -48,28 +48,28 @@ abstract class LocationFragment : Fragment(), LocationActivity.UpdateLocation,
         locationViewModel.addGPSStatus(status)
     }
 
-    private fun showSnackbar() {
-        if (snackbar == null) {
-            snackbar = Snackbar.make(
+    private fun showLocationSnackbar() {
+        if (locationSnackbar == null) {
+            locationSnackbar = Snackbar.make(
                 layoutParent(),
                 getString(R.string.gps_message),
                 Snackbar.LENGTH_INDEFINITE
             ).setAction(
                 getString(R.string.ok)
             ) {
-                dismissSnackbar()
+                dismissLocationSnackbar()
                 (requireActivity() as LocationActivity).permissionGPS()
             }
         }
-        snackbar?.show()
+        locationSnackbar?.show()
     }
 
-    private fun dismissSnackbar() {
-        snackbar?.dismiss()
+    private fun dismissLocationSnackbar() {
+        locationSnackbar?.dismiss()
     }
 
     override fun onDestroyView() {
-        dismissSnackbar()
+        dismissLocationSnackbar()
         super.onDestroyView()
     }
 
