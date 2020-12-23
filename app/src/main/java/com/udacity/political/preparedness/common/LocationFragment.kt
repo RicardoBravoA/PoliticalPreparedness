@@ -46,6 +46,9 @@ abstract class LocationFragment : Fragment(), LocationActivity.UpdateLocation,
 
     override fun onGPSStatus(status: Boolean) {
         locationViewModel.addGPSStatus(status)
+        if (status) {
+            dismissLocationSnackbar()
+        }
     }
 
     private fun showLocationSnackbar() {
