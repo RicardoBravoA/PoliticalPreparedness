@@ -49,5 +49,11 @@
             android:layout_height="wrap_content"
             android:alpha="0.0" />
 
+        <Constraint
+            android:id="@id/find_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.0" />
+
     </ConstraintSet>
 </MotionScene>
