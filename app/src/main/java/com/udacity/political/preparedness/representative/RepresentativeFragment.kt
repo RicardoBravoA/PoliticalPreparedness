@@ -4,6 +4,8 @@ import android.location.Geocoder
 import android.os.Bundle
 import android.view.*
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
+import com.udacity.political.preparedness.R
 import com.udacity.political.preparedness.common.LocationFragment
 import com.udacity.political.preparedness.databinding.FragmentRepresentativeBinding
 import com.udacity.political.preparedness.domain.model.representative.RepresentativeModel
@@ -17,6 +19,7 @@ import java.util.*
 class RepresentativeFragment : LocationFragment() {
 
     private lateinit var binding: FragmentRepresentativeBinding
+    private var snackbar: Snackbar? = null
 
     private val viewModel: RepresentativeViewModel by lazy {
         ViewModelProvider(this, RepresentativeViewModelFactory(requireActivity().application)).get(
@@ -88,6 +91,12 @@ class RepresentativeFragment : LocationFragment() {
             representativeAdapter.submitList(it)
         })
 
+        viewModel.error.observe(viewLifecycleOwner, {
+            it?.let {
+                showSnackbar(it)
+            }
+        })
+
         return binding.root
 
     }
@@ -96,8 +105,33 @@ class RepresentativeFragment : LocationFragment() {
 
     }
 
+    private fun showSnackbar(value: String) {
+        if (snackbar == null) {
+            snackbar = Snackbar.make(
+                layoutParent(),
+                value,
+                Snackbar.LENGTH_INDEFINITE
+            ).setAction(
+                getString(R.string.ok)
+            ) {
+                dismissSnackbar()
+                binding.findButton.performClick()
+            }
+        }
+        snackbar?.show()
+    }
+
+    private fun dismissSnackbar() {
+        snackbar?.dismiss()
+    }
+
     private fun iconClick(url: String) {
         requireContext().openWebView(url)
+    }
+
+    override fun onDestroyView() {
+        dismissSnackbar()
+        super.onDestroyView()
     }
 
 }
