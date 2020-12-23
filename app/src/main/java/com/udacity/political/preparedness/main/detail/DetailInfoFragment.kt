@@ -47,7 +47,6 @@ class DetailInfoFragment : LocationFragment() {
 
         binding.actionButton.setOnClickListener {
             viewModel.actionButton()
-
         }
 
         viewModel.showForm.observe(viewLifecycleOwner, {
@@ -57,8 +56,15 @@ class DetailInfoFragment : LocationFragment() {
             }
         })
 
+        viewModel.showLoading.observe(viewLifecycleOwner, {
+            binding.progressBar.visible(it)
+            binding.constraintForm.visible(!it)
+        })
+
         viewModel.showErrorForm.observe(viewLifecycleOwner, {
             binding.constraintError.visible(it)
+            binding.constraintForm.visible(!it)
+            binding.progressBar.visible(!it)
         })
 
         binding.messageButton.setOnClickListener {
@@ -72,6 +78,7 @@ class DetailInfoFragment : LocationFragment() {
         })
 
         viewModel.data.observe(viewLifecycleOwner, {
+            binding.toolbarName.visible(true)
             binding.toolbarName.title = it.name
             binding.electionDateTextView.text = it.electionDay.toString()
             binding.stateHeaderTextView.visible(true)
@@ -98,6 +105,7 @@ class DetailInfoFragment : LocationFragment() {
                 binding.addressLineTextView.text = address
                 binding.addressLineTextView.visible(true)
             }
+            viewModel.hideLoading()
         })
 
         return binding.root

@@ -1,6 +1,7 @@
 package com.udacity.political.preparedness.main.detail
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -43,6 +44,10 @@ class DetailInfoViewModel(
     val navigate: LiveData<Boolean>
         get() = _navigate
 
+    private val _showLoading = MutableLiveData<Boolean>()
+    val showLoading: LiveData<Boolean>
+        get() = _showLoading
+
     fun init(id: String, fromSavedValue: Boolean) {
         fromSaved.value = fromSavedValue
         electionId.value = id
@@ -64,16 +69,22 @@ class DetailInfoViewModel(
     }
 
     fun showData(id: String, address: String) {
+        _showLoading.value = true
         viewModelScope.launch {
             when (val result = electionDetailUseCase.get(id, address)) {
                 is ResultType.Success -> {
                     _data.value = result.value
                 }
                 is ResultType.Error -> {
-                    //Do nothing
+                    _showLoading.value = false
+                    Log.i("Error", result.value.toString())
                 }
             }
         }
+    }
+
+    fun hideLoading() {
+        _showLoading.value = false
     }
 
     fun actionButton() {
