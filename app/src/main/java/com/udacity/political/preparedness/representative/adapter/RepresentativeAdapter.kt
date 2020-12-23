@@ -13,7 +13,6 @@ import com.udacity.political.preparedness.domain.model.representative.Representa
 import com.udacity.political.preparedness.util.visible
 
 class RepresentativeAdapter(
-    private val representativeClick: (representativeModel: RepresentativeModel) -> Unit,
     private val iconClick: (url: String) -> Unit
 ) :
     ListAdapter<RepresentativeModel, RepresentativeAdapter.ItemViewHolder>(DiffCallback) {
@@ -25,9 +24,6 @@ class RepresentativeAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val model = getItem(position)
         holder.bind(model)
-        holder.itemView.setOnClickListener {
-            representativeClick(model)
-        }
     }
 
     class ItemViewHolder(

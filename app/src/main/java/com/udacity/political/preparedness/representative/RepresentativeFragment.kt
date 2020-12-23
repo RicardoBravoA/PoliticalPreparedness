@@ -84,7 +84,7 @@ class RepresentativeFragment : LocationFragment() {
             binding.stateSpinner.selectValue(it.state)
         })
 
-        val representativeAdapter = RepresentativeAdapter(::representativeClick, ::iconClick)
+        val representativeAdapter = RepresentativeAdapter(::iconClick)
         binding.representativeRecyclerView.adapter = representativeAdapter
 
         viewModel.data.observe(viewLifecycleOwner, {
@@ -98,10 +98,6 @@ class RepresentativeFragment : LocationFragment() {
         })
 
         return binding.root
-
-    }
-
-    private fun representativeClick(representativeModel: RepresentativeModel) {
 
     }
 
