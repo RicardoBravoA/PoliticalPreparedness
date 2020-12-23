@@ -27,14 +27,6 @@ class ElectionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        //TODO: Add binding values
-
-        //TODO: Link elections to voter info
-
-        //TODO: Initiate recycler adapters
-
-        //TODO: Populate recycler adapters
-
         val binding = FragmentElectionsBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
@@ -77,7 +69,5 @@ class ElectionsFragment : Fragment() {
             )
         )
     }
-
-    //TODO: Refresh adapters when fragment loads
 
 }
