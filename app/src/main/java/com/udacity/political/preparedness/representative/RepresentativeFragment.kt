@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.udacity.political.preparedness.common.LocationFragment
 import com.udacity.political.preparedness.databinding.FragmentRepresentativeBinding
 import com.udacity.political.preparedness.domain.model.representative.RepresentativeModel
-import com.udacity.political.preparedness.main.election.adapter.ElectionListAdapter
 import com.udacity.political.preparedness.representative.adapter.RepresentativeAdapter
 import com.udacity.political.preparedness.util.openWebView
 import com.udacity.political.preparedness.util.selectValue
