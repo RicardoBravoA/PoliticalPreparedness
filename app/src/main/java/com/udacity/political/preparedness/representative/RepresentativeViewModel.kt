@@ -3,7 +3,6 @@ package com.udacity.political.preparedness.representative
 import android.content.Context
 import android.location.Geocoder
 import android.location.Location
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,10 +20,6 @@ class RepresentativeViewModel(
     private val representativeUseCase: RepresentativeUseCase
 ) :
     ViewModel() {
-
-    //TODO: Establish live data for representatives and address
-
-    //TODO: Create function to fetch representatives from API from a provided address
 
     private val _stateList = MutableLiveData<List<String>>()
     val stateList: LiveData<List<String>>
@@ -48,14 +43,12 @@ class RepresentativeViewModel(
 
     fun validateInternet() {
         val internet = context.isInternet()
-        Log.i("z- internet", internet.toString())
 
         _showForm.value = internet
         _showErrorForm.value = !internet
     }
 
     fun find(line1: String?, line2: String?, city: String?, state: String?, zip: String?) {
-        Log.i("z- find", "$line1 -  $line2 - $city - $state - $zip")
 
         val address: String = RepresentativeMapper.address(line1, line2, city, state, zip)
 
@@ -63,7 +56,6 @@ class RepresentativeViewModel(
             when (val result = representativeUseCase.get(address)) {
                 is ResultType.Success -> {
                     _data.value = result.value
-                    Log.i("z- data", data.value.toString())
                 }
                 is ResultType.Error -> {
                     //Do nothing
@@ -87,18 +79,6 @@ class RepresentativeViewModel(
             .first()
         _addressModel.value = addressModel
     }
-
-    /**
-     *  The following code will prove helpful in constructing a representative from the API. This code combines the two nodes of the RepresentativeResponse into a single official :
-    val (offices, officials) = getRepresentativesDeferred.await()
-    _representatives.value = offices.flatMap { office -> office.getRepresentatives(officials) }
-    Note: getRepresentatives in the above code represents the method used to fetch data from the API
-    Note: _representatives in the above code represents the established mutable live data housing representatives
-     */
-
-    //TODO: Create function get address from geo location
-
-    //TODO: Create function to get address from individual fields
 
     fun loadSpinner() {
         val list =
