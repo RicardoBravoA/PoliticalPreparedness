@@ -41,6 +41,10 @@ class RepresentativeViewModel(
     val data: LiveData<List<RepresentativeModel>>
         get() = _data
 
+    private var _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
+
     fun validateInternet() {
         val internet = context.isInternet()
 
@@ -58,7 +62,7 @@ class RepresentativeViewModel(
                     _data.value = result.value
                 }
                 is ResultType.Error -> {
-                    //Do nothing
+                    _error.value = result.value.error.message
                 }
             }
         }
